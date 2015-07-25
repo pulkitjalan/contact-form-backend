@@ -27,9 +27,9 @@ class Contact
     {
         $mailer = $this->getMailer();
 
-        $subject = (isset($data['subject'])) ? $data['subject'] : $this->getConfigParam('subject', 'Contact Form Submission');
-        $from = (isset($data['from'])) ? $data['from'] : $this->getConfigParam('from', 'example@example.com');
-        $to = (isset($data['to'])) ? $data['to'] : $this->getConfigParam('to');
+        $subject = array_get($data, 'subject', $this->getConfigParam('subject', 'Contact Form Submission'));
+        $from = array_get($data, 'from', $this->getConfigParam('from', 'example@example.com'));
+        $to = array_get($data, 'to', $this->getConfigParam('to'));
         unset($data['subject']);
         unset($data['from']);
         unset($data['to']);
@@ -44,6 +44,10 @@ class Contact
             ->setFrom($from)
             ->setTo($to)
             ->setBody($body, 'text/plain');
+
+        if ($email = array_get($data, 'email')) {
+            $message->setReplyTo($email);
+        }
 
         return $this->mailer->send($message);
     }

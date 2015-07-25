@@ -2,6 +2,17 @@ Contact Form Backend
 ===================
 > Simple contact form smtp backend
 
+```html
+<form method="POST" action="//example.com" accept-charset="UTF-8">
+  <div><label for="name">Name:</label><input name="name" title="Your name" type="text"/></div>
+  <div><label for="email">Email:</label><input name="email" title="Your e-mail" type="text"/></div>
+  <div><label for="message">Message:</label><textarea name="message" rows="5"></textarea></div>
+  <div><button type="submit">Submit</button></div>
+</form>
+```
+
+Once configured script will send the contact form submission to the configured email. Script will also automatically add a reply to address as the `email` field.
+
 ## Requirements
 
 * PHP >= 5.4
