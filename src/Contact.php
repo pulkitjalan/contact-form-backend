@@ -34,17 +34,16 @@ class Contact
         unset($data['from']);
         unset($data['to']);
 
-        $body = '<html> <head></head> <body> <h1>'.$subject.':</h1><br>';
+        $body = $subject."\n\n";
         foreach ($data as $key => $value) {
-            $body .= ' <h3>'.ucwords($key).':</h3>'.'<p>'.$value.'</p><br>';
+            $body .= ucwords($key).': '.$value."\n";
         }
-        $body .= ' </body> </html>';
 
-        $message = Swift_Message::newInstance();
+        $message = \Swift_Message::newInstance();
         $message->setSubject($subject)
             ->setFrom($from)
             ->setTo($to)
-            ->setBody($body, 'text/html');
+            ->setBody($body, 'text/plain');
 
         return $this->mailer->send($message);
     }
@@ -52,10 +51,10 @@ class Contact
     public function getMailer()
     {
         if (!$this->mailer) {
-            $transport = Swift_SmtpTransport::newInstance($this->getConfigParam('server'), $this->getConfigParam('port'));
+            $transport = \Swift_SmtpTransport::newInstance($this->getConfigParam('server'), $this->getConfigParam('port'));
             $transport->setUsername($this->getConfigParam('username'))->setPassword($this->getConfigParam('password'));
 
-            $this->mailer = Swift_Mailer::newInstance($transport);
+            $this->mailer = \Swift_Mailer::newInstance($transport);
         }
 
         return $this->mailer;

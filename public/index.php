@@ -18,10 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($contact->send($data)) {
         if ($success = $contact->getConfigParam('redirect.success')) {
             header('Location: '.$success);
+        } else {
+            echo 'Successful';
         }
     } else {
         if ($failure = $contact->getConfigParam('redirect.failure')) {
             header('Location: '.$failure);
+        } else {
+            echo 'Failed';
         }
     }
 
