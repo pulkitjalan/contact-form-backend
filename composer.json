@@ -1,0 +1,15 @@
+{
+    "name": "pulkitjalan/contact-form-backend",
+    "description": "Simple contact form backend",
+
+    "require": {
+        "swiftmailer/swiftmailer": "5.4.*",
+        "illuminate/support": "~4"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "PulkitJalan\\ContactForm\\": "src"
+        }
+    }
+}
