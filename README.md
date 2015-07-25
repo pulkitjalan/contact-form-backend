@@ -6,6 +6,10 @@ Contact Form Backend
 
 * PHP >= 5.4
 
+## Installation
+
+Clone repo and point webroot to the `public` directory. Configure using the config section below.
+
 ## Config
 
 Create a config file (`config.php`) with the contents below and fill in the required fields
