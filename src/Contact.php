@@ -27,12 +27,14 @@ class Contact
     {
         $mailer = $this->getMailer();
 
-        $subject = array_get($data, 'subject', $this->getConfigParam('subject', 'Contact Form Submission'));
-        $from = array_get($data, 'from', $this->getConfigParam('from', 'example@example.com'));
-        $to = array_get($data, 'to', $this->getConfigParam('to'));
-        unset($data['subject']);
-        unset($data['from']);
-        unset($data['to']);
+        $subject = $this->getConfigParam('subject', array_get($data, 'subject', 'Contact Form Submission'));
+        $from = $this->getConfigParam('from', array_get($data, 'from', 'test@example.com'));
+        $to = $this->getConfigParam('to', array_get($data, 'to'));
+
+        // remove from array
+        array_forget($data, 'subject');
+        array_forget($data, 'from');
+        array_forget($data, 'to');
 
         $body = '';
         foreach ($data as $key => $value) {
