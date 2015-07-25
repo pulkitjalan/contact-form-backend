@@ -5,10 +5,11 @@ Contact Form Backend
 ## Requirements
 
 * PHP >= 5.4
+* Composer
 
 ## Installation
 
-Clone repo and point webroot to the `public` directory. Configure using the config section below.
+Clone repo, point webroot to the `public` directory, run `composer update` and create a configure file (config section below).
 
 ## Config
 
@@ -45,6 +46,7 @@ return [
 
     /*
      * Send email from address (can be set in form post data also)
+     * Can also be set to array ['noreply@example.com' => 'No Reply']
      */
     'from' => '',
 

@@ -34,7 +34,7 @@ class Contact
         unset($data['from']);
         unset($data['to']);
 
-        $body = $subject."\n\n";
+        $body = '';
         foreach ($data as $key => $value) {
             $body .= ucwords($key).': '.$value."\n";
         }
