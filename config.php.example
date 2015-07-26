@@ -23,6 +23,7 @@ return [
 
     /*
      * Send email to address (can be set in form post data also)
+     * string or array 'user@example.com' or ['user@example.com' => 'User']
      */
     'to' => null,
 
@@ -42,7 +43,7 @@ return [
      * Can be set in form post data also using redirect.success and redirect.failure
      */
     'redirect' => [
-    	'success' => null,
-    	'failure' => null,
+        'success' => null,
+        'failure' => null,
     ],
 ];

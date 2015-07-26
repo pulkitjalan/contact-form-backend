@@ -11,7 +11,9 @@ Contact Form Backend
 </form>
 ```
 
-Once configured, it will send the contact form submission to the configured email. A reply to address will automatically be added as the `email` field.
+Once configured, it will send the contact form submission to the configured email.
+A reply to address will automatically be added as the `email` fields value.
+Files can also be attached using a `files` for `files[]` field.
 
 ## Requirements
 

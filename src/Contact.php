@@ -3,6 +3,7 @@
 namespace PulkitJalan\ContactForm;
 
 use Swift_SmtpTransport;
+use Swift_Attachment;
 use Swift_Message;
 use Swift_Mailer;
 
@@ -63,21 +64,43 @@ class Contact
         array_forget($data, 'from');
         array_forget($data, 'to');
 
-        $body = '';
-        foreach ($data as $key => $value) {
-            $body .= ucwords($key).': '.$value."\n";
+        // build message instance
+        $message = Swift_Message::newInstance()->setSubject($subject)->setFrom($from)->setTo($to);
+
+        // add attachments if exist
+        $files = array_get($data, 'files', []);
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $message->attach(Swift_Attachment::newInstance(
+                    file_get_contents(array_get($file, 'path')),
+                    array_get($file, 'name'),
+                    array_get($file, 'type')
+                ));
+            }
         }
 
-        $message = Swift_Message::newInstance();
-        $message->setSubject($subject)
-            ->setFrom($from)
-            ->setTo($to)
-            ->setBody($body, 'text/plain');
+        // remove attachments from data
+        array_forget($data, 'files');
 
+        // build html and text versions of the email
+        $html = '<html> <head></head> <body>';
+        $text = '';
+        foreach ($data as $key => $value) {
+            $html .= ' <p><b>'.ucwords($key).'</b>: '.$value.'</p>';
+            $text .= ucwords($key).': '.$value."\n";
+        }
+        $html .= ' </body> </html>';
+
+        // add body to message in both html and text formats
+        $message->setBody($html, 'text/html')
+            ->addPart($text, 'text/plain');
+
+        // add reply to if email exists
         if ($email = array_get($data, 'email')) {
             $message->setReplyTo($email);
         }
 
+        // use mailer to send message
         try {
             return $this->mailer->send($message);
         } catch (\Exception $e) {
@@ -95,8 +118,8 @@ class Contact
     public function getMailer()
     {
         if (!$this->mailer) {
-            $transport = Swift_SmtpTransport::newInstance($this->getConfigParam('server'), $this->getConfigParam('port'));
-            $transport->setUsername($this->getConfigParam('username'))->setPassword($this->getConfigParam('password'));
+            $transport = Swift_SmtpTransport::newInstance($this->getConfigParam('server'), $this->getConfigParam('port'))
+                ->setUsername($this->getConfigParam('username'))->setPassword($this->getConfigParam('password'));
 
             $this->mailer = Swift_Mailer::newInstance($transport);
         }
@@ -127,6 +150,12 @@ class Contact
     {
         $config = $this->getConfig();
 
-        return array_get($config, $param, $default);
+        $data = array_get($config, $param);
+
+        if (!empty($data)) {
+            return $data;
+        }
+
+        return $default;
     }
 }

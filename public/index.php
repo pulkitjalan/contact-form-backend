@@ -2,8 +2,15 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Illuminate\Http\Request;
+
+// create a request instance
+$input = Request::createFromGlobals();
+
+// create contact instance
 $contact = new \PulkitJalan\ContactForm\Contact();
 
+// set header to allow all origins
 header('Access-Control-Allow-Origin: *');
 
 // if form is not configured throw 500 error
@@ -13,10 +20,18 @@ if (!$contact->isConfigured()) {
     exit;
 }
 
-// if request method was post then user is trying to send
-// an email
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = $_POST;
+// if request method was post then user is trying to send an email
+if ($input->isMethod('post')) {
+    $data = $input->all();
+    $files = array_get($data, 'files', []);
+
+    $data['files'] = array_map(function ($file) {
+        return [
+            'path' => $file->getRealPath(),
+            'name' => urldecode($file->getClientOriginalName()),
+            'type' => $file->getMimeType(),
+        ];
+    }, ((is_array($files)) ? $files : [$files]));
 
     // try sending
     if ($contact->send($data)) {
