@@ -29,7 +29,6 @@ if ($input->isMethod('post')) {
         return [
             'path' => $file->getRealPath(),
             'name' => urldecode($file->getClientOriginalName()),
-            'type' => $file->getMimeType(),
         ];
     }, ((is_array($files)) ? $files : [$files]));
 

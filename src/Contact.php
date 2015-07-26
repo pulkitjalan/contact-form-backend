@@ -73,8 +73,7 @@ class Contact
             foreach ($files as $file) {
                 $message->attach(Swift_Attachment::newInstance(
                     file_get_contents(array_get($file, 'path')),
-                    array_get($file, 'name'),
-                    array_get($file, 'type')
+                    array_get($file, 'name')
                 ));
             }
         }
