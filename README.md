@@ -3,10 +3,13 @@ Contact Form Backend
 > Simple contact form smtp backend
 
 ```html
-<form method="POST" action="//example.com" accept-charset="UTF-8">
+<form enctype="multipart/form-data" method="POST" action="//example.com" accept-charset="UTF-8">
+  <input name="to" type="hidden" value="user@example.com"/>
+  <input name="from" type="hidden" value="noreply@example.com"/>
   <div><label for="name">Name:</label><input name="name" title="Your name" type="text"/></div>
   <div><label for="email">Email:</label><input name="email" title="Your e-mail" type="text"/></div>
   <div><label for="message">Message:</label><textarea name="message" rows="5"></textarea></div>
+  <div><label for="files">Files:</label><input name="files[]" title="Upload files" type="file"/></div>
   <div><button type="submit">Submit</button></div>
 </form>
 ```

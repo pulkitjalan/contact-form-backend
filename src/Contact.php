@@ -71,11 +71,13 @@ class Contact
         $files = array_get($data, 'files', []);
         if (!empty($files)) {
             foreach ($files as $file) {
-                $message->attach(Swift_Attachment::newInstance(
-                    file_get_contents(array_get($file, 'path')),
-                    array_get($file, 'name'),
-                    array_get($file, 'type')
-                ));
+                if (!empty($file)) {
+                    $message->attach(Swift_Attachment::newInstance(
+                        file_get_contents(array_get($file, 'path')),
+                        array_get($file, 'name'),
+                        array_get($file, 'type')
+                    ));
+                }
             }
         }
 
@@ -86,7 +88,7 @@ class Contact
         $html = '<html> <head></head> <body>';
         $text = '';
         foreach ($data as $key => $value) {
-            $html .= ' <p><b>'.ucwords($key).'</b>: '.$value.'</p>';
+            $html .= ' <p><b>'.ucwords($key).'</b>: '.nl2br($value).'</p>';
             $text .= ucwords($key).': '.$value."\n";
         }
         $html .= ' </body> </html>';

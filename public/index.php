@@ -26,6 +26,10 @@ if ($input->isMethod('post')) {
     $files = array_get($data, 'files', []);
 
     $data['files'] = array_map(function ($file) {
+        if (empty($file)) {
+            return;
+        }
+
         return [
             'path' => $file->getRealPath(),
             'name' => urldecode($file->getClientOriginalName()),
