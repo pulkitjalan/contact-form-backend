@@ -11,7 +11,7 @@ Contact Form Backend
 </form>
 ```
 
-Once configured script will send the contact form submission to the configured email. Script will also automatically add a reply to address as the `email` field.
+Once configured, it will send the contact form submission to the configured email. A reply to address will automatically be added as the `email` field.
 
 ## Requirements
 
@@ -20,63 +20,8 @@ Once configured script will send the contact form submission to the configured e
 
 ## Installation
 
-Clone repo, point webroot to the `public` directory, run `composer update` and create a configure file (config section below).
+Clone repo, point webroot to the `public` directory and run `composer install`.
 
-## Config
+## Configuration
 
-Create a config file (`config.php`) with the contents below and fill in the required fields
-
-```php
-<?php
-
-return [
-    /*
-     * Required, SMTP Server, Eg. 'smtp.mandrillapp.com'
-     */
-    'server' => '',
-
-    /*
-     * Required, SMTP Port, Eg. 25
-     */
-    'port' => '',
-
-    /*
-     * Required, SMTP Username
-     */
-    'username' => '',
-
-    /*
-     * Required, SMTP Password
-     */
-    'password' => '',
-
-    /*
-     * Send email to address (can be set in form post data also)
-     */
-    'to' => '',
-
-    /*
-     * Send email from address (can be set in form post data also)
-     * Can also be set to array ['noreply@example.com' => 'No Reply']
-     */
-    'from' => '',
-
-    /*
-     * Email subject (can be set in form post data also)
-     */
-    'subject' => '',
-
-    /*
-     * Contact form origin for Access-Control-Allow-Origin
-     */
-    'origin' => '*',
-
-    /*
-     * Redirect on email success or failure, Eg. 'http://example.com/success'
-     */
-    'redirect' => [
-    	'success' => '',
-    	'failure' => '',
-    ],
-];
-```
+Copy the example config file `config.php.example` to `config.php` and fill in the required fields (`server`, `port`, `username` and `password`). All other fields are optional as they have some predefined defaults. The `to` field needs to be set in either the config or in the form post.

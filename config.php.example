@@ -1,0 +1,48 @@
+<?php
+
+return [
+    /*
+     * Required, SMTP Server, Eg. 'smtp.mandrillapp.com'
+     */
+    'server' => null,
+
+    /*
+     * Required, SMTP Port, Eg. 25
+     */
+    'port' => 25,
+
+    /*
+     * Required, SMTP Username
+     */
+    'username' => null,
+
+    /*
+     * Required, SMTP Password
+     */
+    'password' => null,
+
+    /*
+     * Send email to address (can be set in form post data also)
+     */
+    'to' => null,
+
+    /*
+     * Send email from address (can be set in form post data also)
+     * string or array 'noreply@example.com' or ['noreply@example.com' => 'No Reply']
+     */
+    'from' => null,
+
+    /*
+     * Email subject (can be set in form post data also)
+     */
+    'subject' => null,
+
+    /*
+     * Redirect on email success or failure, Eg. 'http://example.com/success'
+     * Can be set in form post data also using redirect.success and redirect.failure
+     */
+    'redirect' => [
+    	'success' => null,
+    	'failure' => null,
+    ],
+];
