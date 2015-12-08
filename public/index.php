@@ -30,7 +30,7 @@ $data = $input->all();
 
 $required = $contact->getConfigParam('required');
 foreach ($required as $validate) {
-    if (! in_array($validate, array_keys($data)) || is_null(array_get($data, $validate))) {
+    if (! in_array($validate, array_keys($data)) || empty(array_get($data, $validate))) {
         http_response_code(400);
         echo 'Failed';
 
