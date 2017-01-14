@@ -4,8 +4,8 @@
 
     "require": {
         "swiftmailer/swiftmailer": "5.4.*",
-        "illuminate/support": "~4",
-        "illuminate/http": "~4"
+        "illuminate/support": "~5.1",
+        "illuminate/http": "~5.1"
     },
 
     "autoload": {

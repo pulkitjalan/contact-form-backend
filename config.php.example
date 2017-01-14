@@ -2,7 +2,7 @@
 
 return [
     /*
-     * Required, SMTP Server, Eg. 'smtp.mandrillapp.com'
+     * Required, SMTP Server, Eg. 'smtp.mailgun.org'
      */
     'server' => null,
 
