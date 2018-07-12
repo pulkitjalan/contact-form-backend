@@ -43,6 +43,41 @@ foreach ($required as $validate) {
     }
 }
 
+// Verify captcha
+if (array_get($data, 'g-recaptcha-response') && $secret = $contact->getConfigParam('recaptcha.secret')) {
+    $post_data = http_build_query(
+        [
+            'secret' => $secret,
+            'response' => array_get($data, 'g-recaptcha-response'),
+            'remoteip' => array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'REMOTE_ADDR'))),
+        ]
+    );
+
+    $opts = [
+        'http' => [
+            'method' => 'POST',
+            'header' => 'Content-type: application/x-www-form-urlencoded',
+            'content' => $post_data,
+        ],
+    ];
+
+    $context = stream_context_create($opts);
+    $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+    $result = json_decode($response);
+
+    if (! $result->success) {
+        http_response_code(400);
+        echo 'Failed';
+
+        // Check if user has set a redirect
+        if ($failure = $contact->getConfigParam('redirect.failure', array_get($data, 'redirect.failure'))) {
+            header('Location: '.$failure);
+        }
+
+        exit;
+    }
+}
+
 $files = array_get($data, 'files', []);
 
 $data['files'] = array_map(function ($file) {

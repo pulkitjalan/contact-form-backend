@@ -50,11 +50,18 @@ return [
     /*
      * Set a set of required fields within the post data
      * eg: 'name', 'email', 'message', 'files'
-     * 
+     *
      * Failure message and redirect will be returned if
      * data does not exist
      */
     'required' => [
         //
+    ],
+
+    /*
+     * Google recaptcha secret
+     */
+    'recaptcha' => [
+        'secret' => null,
     ],
 ];

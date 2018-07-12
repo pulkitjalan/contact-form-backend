@@ -37,7 +37,7 @@ class Contact
      */
     public function isConfigured()
     {
-        if (!$this->getConfigParam('server') || !$this->getConfigParam('port') || !$this->getConfigParam('username') || !$this->getConfigParam('password')) {
+        if (! $this->getConfigParam('server') || ! $this->getConfigParam('port') || ! $this->getConfigParam('username') || ! $this->getConfigParam('password')) {
             return false;
         }
 
@@ -69,9 +69,9 @@ class Contact
 
         // add attachments if exist
         $files = array_get($data, 'files', []);
-        if (!empty($files)) {
+        if (! empty($files)) {
             foreach ($files as $file) {
-                if (!empty($file)) {
+                if (! empty($file)) {
                     $message->attach(Swift_Attachment::newInstance(
                         file_get_contents(array_get($file, 'path')),
                         array_get($file, 'name'),
@@ -119,7 +119,7 @@ class Contact
      */
     public function getMailer()
     {
-        if (!$this->mailer) {
+        if (! $this->mailer) {
             $transport = Swift_SmtpTransport::newInstance($this->getConfigParam('server'), $this->getConfigParam('port'))
                 ->setUsername($this->getConfigParam('username'))->setPassword($this->getConfigParam('password'));
 
@@ -154,7 +154,7 @@ class Contact
 
         $data = array_get($config, $param);
 
-        if (!empty($data)) {
+        if (! empty($data)) {
             return $data;
         }
 
