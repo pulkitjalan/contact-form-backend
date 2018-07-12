@@ -76,6 +76,8 @@ if (array_get($data, 'g-recaptcha-response') && $secret = $contact->getConfigPar
 
         exit;
     }
+
+    unset($data['g-recaptcha-response']);
 }
 
 $files = array_get($data, 'files', []);
