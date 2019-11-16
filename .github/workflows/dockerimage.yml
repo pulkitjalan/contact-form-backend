@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/$GITHUB_REPOSITORY/contact-form:latest
+
+    - name: Docker login
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username $GITHUB_ACTOR --password-stdin
+
+    - name: Push docker image
+      run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/contact-form:latest
