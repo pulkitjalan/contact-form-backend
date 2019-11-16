@@ -59,7 +59,7 @@ class Contact
         $mailer = $this->getMailer();
 
         $subject = $this->getConfigParam('subject', Arr::get($data, 'subject', 'Contact Form Submission'));
-        $from = $this->getConfigParam('from', Arr::get($data, 'from', ['noreply@example.com' => 'No Reply']));
+        $from = $this->getConfigParam('from', Arr::get($data, 'from', ['email' => 'noreply@example.com', 'name' => 'No Reply']));
         $to = $this->getConfigParam('to', Arr::get($data, 'to'));
 
         // remove from array
@@ -68,7 +68,10 @@ class Contact
         Arr::forget($data, 'to');
 
         // build message instance
-        $message = Swift_Message::newInstance()->setSubject($subject)->setFrom($from)->setTo($to);
+        $message = Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom(Arr::get($from, 'email'), Arr::get($from, 'name'))
+            ->setTo(Arr::get($to, 'email'), Arr::get($to, 'name'));
 
         // add attachments if exist
         $files = Arr::get($data, 'files', []);
