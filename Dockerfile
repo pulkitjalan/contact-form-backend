@@ -10,6 +10,7 @@ RUN apk --no-cache add \
     php7-zlib \
     php7-session \
     php7-mbstring \
+    php7-fileinfo \
     php7-gd \
     nginx \
     supervisor \
