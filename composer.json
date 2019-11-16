@@ -3,9 +3,9 @@
     "description": "Simple contact form backend",
 
     "require": {
-        "swiftmailer/swiftmailer": "5.4.*",
-        "illuminate/support": "~5.1",
-        "illuminate/http": "~5.1"
+        "swiftmailer/swiftmailer": "~5.4",
+        "illuminate/support": "~5.8",
+        "illuminate/http": "~5.8"
     },
 
     "autoload": {
