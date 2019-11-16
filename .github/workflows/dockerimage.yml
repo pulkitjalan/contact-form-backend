@@ -23,11 +23,12 @@ jobs:
       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username $GITHUB_ACTOR --password-stdin
 
     - name: Build the Docker image
-      run: docker build \
-        --file Dockerfile \
-        --tag docker.pkg.github.com/$GITHUB_REPOSITORY/contact-form:latest \
-        --tag pulkitjalan/contact-form:latest \
-        .
+      run: |
+        docker build \
+          --file Dockerfile \
+          --tag docker.pkg.github.com/$GITHUB_REPOSITORY/contact-form:latest \
+          --tag pulkitjalan/contact-form:latest \
+          .
 
     - name: Push the Docker image to dockerhub
       run: docker push pulkitjalan/contact-form:latest
