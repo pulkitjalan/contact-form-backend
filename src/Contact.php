@@ -2,10 +2,11 @@
 
 namespace PulkitJalan\ContactForm;
 
-use Swift_SmtpTransport;
-use Swift_Attachment;
-use Swift_Message;
 use Swift_Mailer;
+use Swift_Message;
+use Swift_Attachment;
+use Swift_SmtpTransport;
+use Illuminate\Support\Arr;
 
 class Contact
 {
@@ -26,6 +27,8 @@ class Contact
     {
         if (file_exists(__DIR__.'/../config.php')) {
             $this->config = require __DIR__.'/../config.php';
+        } else {
+            $this->config = require __DIR__.'/../config.php.example';
         }
     }
 
@@ -55,34 +58,34 @@ class Contact
     {
         $mailer = $this->getMailer();
 
-        $subject = $this->getConfigParam('subject', array_get($data, 'subject', 'Contact Form Submission'));
-        $from = $this->getConfigParam('from', array_get($data, 'from', ['noreply@example.com' => 'No Reply']));
-        $to = $this->getConfigParam('to', array_get($data, 'to'));
+        $subject = $this->getConfigParam('subject', Arr::get($data, 'subject', 'Contact Form Submission'));
+        $from = $this->getConfigParam('from', Arr::get($data, 'from', ['noreply@example.com' => 'No Reply']));
+        $to = $this->getConfigParam('to', Arr::get($data, 'to'));
 
         // remove from array
-        array_forget($data, 'subject');
-        array_forget($data, 'from');
-        array_forget($data, 'to');
+        Arr::forget($data, 'subject');
+        Arr::forget($data, 'from');
+        Arr::forget($data, 'to');
 
         // build message instance
         $message = Swift_Message::newInstance()->setSubject($subject)->setFrom($from)->setTo($to);
 
         // add attachments if exist
-        $files = array_get($data, 'files', []);
+        $files = Arr::get($data, 'files', []);
         if (! empty($files)) {
             foreach ($files as $file) {
                 if (! empty($file)) {
                     $message->attach(Swift_Attachment::newInstance(
-                        file_get_contents(array_get($file, 'path')),
-                        array_get($file, 'name'),
-                        array_get($file, 'type')
+                        file_get_contents(Arr::get($file, 'path')),
+                        Arr::get($file, 'name'),
+                        Arr::get($file, 'type')
                     ));
                 }
             }
         }
 
         // remove attachments from data
-        array_forget($data, 'files');
+        Arr::forget($data, 'files');
 
         // build html and text versions of the email
         $html = '<html> <head></head> <body>';
@@ -98,7 +101,7 @@ class Contact
             ->addPart($text, 'text/plain');
 
         // add reply to if email exists
-        if ($email = array_get($data, 'email')) {
+        if ($email = Arr::get($data, 'email')) {
             $message->setReplyTo($email);
         }
 
@@ -152,7 +155,7 @@ class Contact
     {
         $config = $this->getConfig();
 
-        $data = array_get($config, $param);
+        $data = Arr::get($config, $param);
 
         if (! empty($data)) {
             return $data;

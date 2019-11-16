@@ -4,64 +4,68 @@ return [
     /*
      * Required, SMTP Server, Eg. 'smtp.mailgun.org'
      */
-    'server' => null,
+    'server' => env('CONTACT_FORM_SERVER'),
 
     /*
      * Required, SMTP Port, Eg. 25
      */
-    'port' => 25,
+    'port' => env('CONTACT_FORM_PORT', 25),
 
     /*
      * Required, SMTP Username
      */
-    'username' => null,
+    'username' => env('CONTACT_FORM_USERNAME'),
 
     /*
      * Required, SMTP Password
      */
-    'password' => null,
+    'password' => env('CONTACT_FORM_PASSWORD'),
 
     /*
      * Send email to address (can be set in form post data also)
      * string or array 'user@example.com' or ['user@example.com' => 'User']
      */
-    'to' => null,
+    'to' => [
+        'email' => env('CONTACT_FORM_TO_EMAIL'),
+        'name' => env('CONTACT_FORM_TO_NAME'),
+    ],
 
     /*
      * Send email from address (can be set in form post data also)
      * string or array 'noreply@example.com' or ['noreply@example.com' => 'No Reply']
      */
-    'from' => null,
+    'from' => [
+        'email' => env('CONTACT_FORM_FROM_EMAIL'),
+        'name' => env('CONTACT_FORM_FROM_NAME'),
+    ],
 
     /*
      * Email subject (can be set in form post data also)
      */
-    'subject' => null,
+    'subject' => env('CONTACT_FORM_SUBJECT'),
 
     /*
      * Redirect on email success or failure, Eg. 'http://example.com/success'
      * Can be set in form post data also using redirect.success and redirect.failure
      */
     'redirect' => [
-        'success' => null,
-        'failure' => null,
+        'success' => env('CONTACT_FORM_REDIRECT_SUCCESS'),
+        'failure' => env('CONTACT_FORM_REDIRECT_FAILURE'),
     ],
 
     /*
-     * Set a set of required fields within the post data
-     * eg: 'name', 'email', 'message', 'files'
+     * Set the required fields within the post data
+     * eg: 'name, email, message, files'
      *
      * Failure message and redirect will be returned if
      * data does not exist
      */
-    'required' => [
-        //
-    ],
+    'required' => env('CONTACT_FORM_REQUIRED_FIELDS'),
 
     /*
      * Google recaptcha secret
      */
     'recaptcha' => [
-        'secret' => null,
+        'secret' => env('CONTACT_FORM_RECAPTCHA_SECRET'),
     ],
 ];

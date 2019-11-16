@@ -2,6 +2,7 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
 // create a request instance
@@ -29,13 +30,22 @@ if (! $input->isMethod('post')) {
 $data = $input->all();
 
 $required = $contact->getConfigParam('required');
+
+if (! is_array($required)) {
+    $required = array_map('trim', explode(',', $required));
+}
+
+if ($contact->getConfigParam('recaptcha.secret') !== null) {
+    $required[] = 'g-recaptcha-response';
+}
+
 foreach ($required as $validate) {
-    if (! in_array($validate, array_keys($data)) || empty(array_get($data, $validate))) {
+    if (! in_array($validate, array_keys($data)) || empty(Arr::get($data, $validate))) {
         http_response_code(400);
         echo 'Failed';
 
         // Check if user has set a redirect
-        if ($failure = $contact->getConfigParam('redirect.failure', array_get($data, 'redirect.failure'))) {
+        if ($failure = $contact->getConfigParam('redirect.failure', Arr::get($data, 'redirect.failure'))) {
             header('Location: '.$failure);
         }
 
@@ -44,12 +54,12 @@ foreach ($required as $validate) {
 }
 
 // Verify captcha
-if (array_get($data, 'g-recaptcha-response') && $secret = $contact->getConfigParam('recaptcha.secret')) {
+if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->getConfigParam('recaptcha.secret')) {
     $post_data = http_build_query(
         [
             'secret' => $secret,
-            'response' => array_get($data, 'g-recaptcha-response'),
-            'remoteip' => array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'REMOTE_ADDR'))),
+            'response' => Arr::get($data, 'g-recaptcha-response'),
+            'remoteip' => Arr::get($_SERVER, 'HTTP_CLIENT_IP', Arr::get($_SERVER, 'HTTP_X_FORWARDED_FOR', Arr::get($_SERVER, 'REMOTE_ADDR'))),
         ]
     );
 
@@ -70,7 +80,7 @@ if (array_get($data, 'g-recaptcha-response') && $secret = $contact->getConfigPar
         echo 'Failed';
 
         // Check if user has set a redirect
-        if ($failure = $contact->getConfigParam('redirect.failure', array_get($data, 'redirect.failure'))) {
+        if ($failure = $contact->getConfigParam('redirect.failure', Arr::get($data, 'redirect.failure'))) {
             header('Location: '.$failure);
         }
 
@@ -80,7 +90,7 @@ if (array_get($data, 'g-recaptcha-response') && $secret = $contact->getConfigPar
     unset($data['g-recaptcha-response']);
 }
 
-$files = array_get($data, 'files', []);
+$files = Arr::get($data, 'files', []);
 
 $data['files'] = array_map(function ($file) {
     if (empty($file)) {
@@ -107,7 +117,7 @@ if ($success) {
     echo 'Successful';
 
     // Check if user has set a redirect
-    if ($success = $contact->getConfigParam('redirect.success', array_get($data, 'redirect.success'))) {
+    if ($success = $contact->getConfigParam('redirect.success', Arr::get($data, 'redirect.success'))) {
         header('Location: '.$success);
     }
 } else {
@@ -115,7 +125,7 @@ if ($success) {
     echo 'Failed';
 
     // Check if user has set a redirect
-    if ($failure = $contact->getConfigParam('redirect.failure', array_get($data, 'redirect.failure'))) {
+    if ($failure = $contact->getConfigParam('redirect.failure', Arr::get($data, 'redirect.failure'))) {
         header('Location: '.$failure);
     }
 }
