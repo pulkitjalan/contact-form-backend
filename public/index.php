@@ -29,13 +29,13 @@ if (! $input->isMethod('post')) {
 
 $data = $input->all();
 
-$required = $contact->getConfigParam('required');
+$required = $contact->getConfig('required');
 
 if (! is_array($required)) {
     $required = array_map('trim', explode(',', $required));
 }
 
-if ($contact->getConfigParam('recaptcha.secret') !== null) {
+if ($contact->getConfig('recaptcha.secret') !== null) {
     $required[] = 'g-recaptcha-response';
 }
 
@@ -45,7 +45,7 @@ foreach ($required as $validate) {
         echo 'Failed';
 
         // Check if user has set a redirect
-        if ($failure = $contact->getConfigParam('redirect.failure', Arr::get($data, 'redirect.failure'))) {
+        if ($failure = $contact->getConfig('redirect.failure', Arr::get($data, 'redirect.failure'))) {
             header('Location: '.$failure);
         }
 
@@ -54,7 +54,7 @@ foreach ($required as $validate) {
 }
 
 // Verify captcha
-if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->getConfigParam('recaptcha.secret')) {
+if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->getConfig('recaptcha.secret')) {
     $post_data = http_build_query(
         [
             'secret' => $secret,
@@ -80,7 +80,7 @@ if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->getConfigPara
         echo 'Failed';
 
         // Check if user has set a redirect
-        if ($failure = $contact->getConfigParam('redirect.failure', Arr::get($data, 'redirect.failure'))) {
+        if ($failure = $contact->getConfig('redirect.failure', Arr::get($data, 'redirect.failure'))) {
             header('Location: '.$failure);
         }
 
@@ -117,7 +117,7 @@ if ($success) {
     echo 'Successful';
 
     // Check if user has set a redirect
-    if ($success = $contact->getConfigParam('redirect.success', Arr::get($data, 'redirect.success'))) {
+    if ($success = $contact->getConfig('redirect.success', Arr::get($data, 'redirect.success'))) {
         header('Location: '.$success);
     }
 } else {
@@ -125,7 +125,7 @@ if ($success) {
     echo 'Failed';
 
     // Check if user has set a redirect
-    if ($failure = $contact->getConfigParam('redirect.failure', Arr::get($data, 'redirect.failure'))) {
+    if ($failure = $contact->getConfig('redirect.failure', Arr::get($data, 'redirect.failure'))) {
         header('Location: '.$failure);
     }
 }

@@ -35,32 +35,25 @@ class Contact
     /**
      * Check if config has been configured with
      * the correct required parameters.
-     *
-     * @return bool
      */
-    public function isConfigured()
+    public function isConfigured(): bool
     {
-        if (! $this->getConfigParam('server') || ! $this->getConfigParam('port') || ! $this->getConfigParam('username') || ! $this->getConfigParam('password')) {
-            return false;
-        }
-
-        return true;
+        return $this->getConfig('server') !== null
+            && $this->getConfig('port') !== null
+            && $this->getConfig('username') !== null
+            && $this->getConfig('password') !== null;
     }
 
     /**
      * Format data and send email.
      *
      * @param array $data
-     *
-     * @return bool
      */
-    public function send(array $data)
+    public function send(array $data): bool
     {
-        $mailer = $this->getMailer();
-
-        $subject = $this->getConfigParam('subject', Arr::get($data, 'subject', 'Contact Form Submission'));
-        $from = $this->getConfigParam('from', Arr::get($data, 'from', ['email' => 'noreply@example.com', 'name' => 'No Reply']));
-        $to = $this->getConfigParam('to', Arr::get($data, 'to'));
+        $subject = $this->getConfig('subject', Arr::get($data, 'subject', 'Contact Form Submission'));
+        $from = $this->getConfig('from', Arr::get($data, 'from', ['email' => 'noreply@example.com', 'name' => 'No Reply']));
+        $to = $this->getConfig('to', Arr::get($data, 'to'));
 
         // remove from array
         Arr::forget($data, 'subject');
@@ -110,7 +103,7 @@ class Contact
 
         // use mailer to send message
         try {
-            return $this->mailer->send($message);
+            return $this->getMailer()->send($message) > 0;
         } catch (\Exception $e) {
             error_log($e->getMessage());
         }
@@ -120,14 +113,12 @@ class Contact
 
     /**
      * Getter for mailer.
-     *
-     * @return Swift_Mailer
      */
-    public function getMailer()
+    public function getMailer(): Swift_Mailer
     {
         if (! $this->mailer) {
-            $transport = Swift_SmtpTransport::newInstance($this->getConfigParam('server'), $this->getConfigParam('port'))
-                ->setUsername($this->getConfigParam('username'))->setPassword($this->getConfigParam('password'));
+            $transport = Swift_SmtpTransport::newInstance($this->getConfig('server'), $this->getConfig('port'))
+                ->setUsername($this->getConfig('username'))->setPassword($this->getConfig('password'));
 
             $this->mailer = Swift_Mailer::newInstance($transport);
         }
@@ -136,34 +127,14 @@ class Contact
     }
 
     /**
-     * Getter for email.
-     *
-     * @return array
+     * Getter for config.
      */
-    public function getConfig()
+    public function getConfig(?string $key = null, $default = null)
     {
-        return $this->config;
-    }
-
-    /**
-     * Get specific item from config, if not found
-     * return default.
-     *
-     * @param  string
-     * @param  mixed
-     *
-     * @return mixed
-     */
-    public function getConfigParam($param, $default = null)
-    {
-        $config = $this->getConfig();
-
-        $data = Arr::get($config, $param);
-
-        if (! empty($data)) {
-            return $data;
+        if ($key === null) {
+            return $this->config;
         }
 
-        return $default;
+        return Arr::get($this->config, $key, $default);
     }
 }
