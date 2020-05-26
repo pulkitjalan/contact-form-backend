@@ -92,17 +92,20 @@ if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->getConfig('re
 
 $files = Arr::get($data, 'files', []);
 
-$data['files'] = array_map(function ($file) {
-    if (empty($file)) {
-        return;
-    }
+$data['files'] = array_filter(
+    array_map(function ($file) {
+        // if the file is invalid dont process it
+        if (empty($file) || ! $file->isValid()) {
+            return;
+        }
 
-    return [
-        'path' => $file->getRealPath(),
-        'name' => urldecode($file->getClientOriginalName()),
-        'type' => $file->getMimeType(),
-    ];
-}, (array) $files);
+        return [
+            'path' => $file->getRealPath(),
+            'name' => urldecode($file->getClientOriginalName()),
+            'type' => $file->getMimeType(),
+        ];
+    }, (array) $files)
+);
 
 $success = false;
 try {
