@@ -44,6 +44,11 @@ return [
      */
     'subject' => env('SUBJECT'),
 
+    /**
+     * Try and make the from address unique to avoid threading
+     */
+    'unique' => env('UNIQUE'),
+
     /*
      * Redirect on email success or failure, Eg. 'http://example.com/success'
      * Can be set in form post data also using redirect.success and redirect.failure

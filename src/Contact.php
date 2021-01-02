@@ -55,6 +55,11 @@ class Contact
         $from = $this->getConfig('from', Arr::get($data, 'from', ['email' => 'noreply@example.com', 'name' => 'No Reply']));
         $to = $this->getConfig('to', Arr::get($data, 'to'));
 
+        // make the email unique
+        if ($this->getConfig('unique', Arr::get($data, 'unique', false))) {
+            Arr::set($from, 'email', uniqid().'+'.Arr::get($from, 'email'));
+        }
+
         // remove from array
         Arr::forget($data, 'subject');
         Arr::forget($data, 'from');
