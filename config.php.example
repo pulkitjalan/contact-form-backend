@@ -8,6 +8,7 @@ return [
 
     /*
      * Required, SMTP Port, Eg. 25
+     * Use 465 for tls
      */
     'port' => env('PORT', 25),
 

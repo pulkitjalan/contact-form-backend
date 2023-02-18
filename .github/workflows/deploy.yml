@@ -3,8 +3,8 @@ name: deploy
 on:
   push:
     branches: [ master, develop ]
-  # schedule:
-  #   - cron: '0 3 * * 0'
+  schedule:
+    - cron: '0 3 * * 0'
 
 jobs:
   build:
