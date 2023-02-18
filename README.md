@@ -18,7 +18,7 @@ Once configured, it will send the contact form submission to the configured emai
 
 ## Requirements
 
-* PHP >= 5.5.9
+* PHP >= 8.1
 * Composer
 
 ## Installation

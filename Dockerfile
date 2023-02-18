@@ -1,28 +1,32 @@
-FROM alpine:3.11
+FROM composer:2 as composer
+COPY . /app
+WORKDIR /app
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+FROM php:8.1-fpm-alpine
 
 # Install packages
-RUN apk --no-cache add \
-    php7 \
-    php7-fpm \
-    php7-json \
-    php7-openssl \
-    php7-curl \
-    php7-zlib \
-    php7-session \
-    php7-mbstring \
-    php7-fileinfo \
-    php7-gd \
-    nginx \
-    supervisor \
-    curl
+RUN apk update \
+    && apk --no-cache add \
+      php81-json \
+      php81-openssl \
+      php81-curl \
+      php81-zlib \
+      php81-session \
+      php81-mbstring \
+      php81-fileinfo \
+      php81-gd \
+      nginx \
+      supervisor \
+      curl
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY config/default.conf /etc/nginx/conf.d/default.conf
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
-COPY config/php.ini /etc/php7/conf.d/custom.ini
+COPY config/fpm-pool.conf /etc/php81/php-fpm.d/www.conf
+COPY config/php.ini /etc/php81/conf.d/custom.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -44,6 +48,7 @@ USER nobody
 # Add application
 WORKDIR /var/www/html
 COPY --chown=nobody . /var/www/html/
+COPY --from=composer --chown=nobody /app/vendor /var/www/html/vendor
 
 # Expose nginx port
 EXPOSE 8080
