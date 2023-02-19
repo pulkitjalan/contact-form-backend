@@ -2,6 +2,7 @@
 
 namespace PulkitJalan\ContactForm;
 
+use Exception;
 use Illuminate\Support\Arr;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
@@ -9,6 +10,7 @@ use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Part\File;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class Contact
 {
@@ -98,8 +100,12 @@ class Contact
 
         // use mailer to send message
         try {
-            return $this->mailer()->send($message) > 0;
-        } catch (\Exception $e) {
+            $this->mailer()->send($email);
+
+            return true;
+        } catch (TransportExceptionInterface $e) {
+            error_log($e->getMessage());
+        } catch (Exception $e) {
             error_log($e->getMessage());
         }
 
