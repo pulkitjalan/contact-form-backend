@@ -100,7 +100,7 @@ class Contact
 
         // use mailer to send message
         try {
-            $this->mailer()->send($email);
+            $this->mailer()->send($message);
 
             return true;
         } catch (TransportExceptionInterface $e) {
