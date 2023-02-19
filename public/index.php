@@ -45,12 +45,12 @@ if ($contact->config('recaptcha.secret') !== null) {
 
 foreach ($required as $validate) {
     if (! in_array($validate, array_keys($data)) || empty(Arr::get($data, $validate))) {
-        http_response_code(400);
-        echo 'Failed';
-
         // Check if user has set a redirect
         if ($failure = $contact->config('redirect.failure', Arr::get($data, 'redirect.failure'))) {
-            header('Location: '.$failure);
+            header('Location: '.$failure, true, 302);
+        } else {
+            http_response_code(400);
+            echo 'Failed';
         }
 
         exit;
@@ -80,12 +80,12 @@ if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->config('recap
     $result = json_decode($response);
 
     if (! $result->success) {
-        http_response_code(400);
-        echo 'Failed';
-
         // Check if user has set a redirect
         if ($failure = $contact->config('redirect.failure', Arr::get($data, 'redirect.failure'))) {
-            header('Location: '.$failure);
+            header('Location: '.$failure, true, 302);
+        } else {
+            http_response_code(400);
+            echo 'Failed';
         }
 
         exit;
@@ -121,18 +121,19 @@ try {
 
 // try sending
 if ($success) {
-    echo 'Successful';
-
     // Check if user has set a redirect
     if ($success = $contact->config('redirect.success', Arr::get($data, 'redirect.success'))) {
-        header('Location: '.$success);
+        header('Location: '.$success, true, 302);
+    } else {
+        http_response_code(200);
+        echo 'Successful';
     }
 } else {
-    http_response_code(400);
-    echo 'Failed';
-
     // Check if user has set a redirect
     if ($failure = $contact->config('redirect.failure', Arr::get($data, 'redirect.failure'))) {
-        header('Location: '.$failure);
+        header('Location: '.$failure, true, 302);
+    } else {
+        http_response_code(400);
+        echo 'Failed';
     }
 }
