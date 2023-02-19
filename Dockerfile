@@ -34,10 +34,16 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /run \
   && chown -R nobody.nobody /var/lib/nginx \
-  && chown -R nobody.nobody /var/log/nginx
-
-# Setup document root
-RUN mkdir -p /var/www/html
+  && chown -R nobody.nobody /var/log/nginx \
+  # Setup document root
+  && mkdir -p /var/www/html \
+  # Cleanup
+  && rm -rf /var/cache/apk/* \
+    /usr/share/doc \
+    /usr/share/man/ \
+    /usr/share/info/* \
+    /var/cache/man/* \
+    /tmp/*
 
 # Make the document root a volume
 VOLUME /var/www/html
