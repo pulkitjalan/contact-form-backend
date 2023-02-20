@@ -9,8 +9,18 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Part\File;
 use Symfony\Component\Mime\Part\DataPart;
+use Symfony\Component\Mailer\Transport\Dsn;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Bridge\Amazon\Transport\SesTransportFactory;
+use Symfony\Component\Mailer\Bridge\Infobip\Transport\InfobipTransportFactory;
+use Symfony\Component\Mailer\Bridge\Mailgun\Transport\MailgunTransportFactory;
+use Symfony\Component\Mailer\Bridge\Mailjet\Transport\MailjetTransportFactory;
+use Symfony\Component\Mailer\Bridge\MailPace\Transport\MailPaceTransportFactory;
+use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkTransportFactory;
+use Symfony\Component\Mailer\Bridge\Mailchimp\Transport\MandrillTransportFactory;
+use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridTransportFactory;
+use Symfony\Component\Mailer\Bridge\Sendinblue\Transport\SendinblueTransportFactory;
 
 class Contact
 {
@@ -28,10 +38,7 @@ class Contact
      */
     public function isConfigured(): bool
     {
-        return $this->config('server') !== null
-            && $this->config('port') !== null
-            && $this->config('username') !== null
-            && $this->config('password') !== null;
+        return $this->config('dsn') !== null;
     }
 
     /**
@@ -117,15 +124,28 @@ class Contact
      */
     public function mailer(): Mailer
     {
-        if (! $this->mailer) {
-            $transport = (new EsmtpTransport($this->config('server'), $this->config('port')))
-                ->setUsername($this->config('username'))
-                ->setPassword($this->config('password'));
-
-            $this->mailer = new Mailer($transport);
+        if ($this->mailer !== null) {
+            return $this->mailer;
         }
 
-        return $this->mailer;
+        $dsn = Dsn::fromString($this->config('dsn'));
+
+        $transport = match(Arr::first(explode('+', $dsn->getScheme(), 1))) {
+            'ses' => (new SesTransportFactory)->create($dsn),
+            // 'gmail' => 
+            'mandrill' => (new MandrillTransportFactory)->create($dsn),
+            'mailgun' => (new MailgunTransportFactory)->create($dsn),
+            'mailjet' => (new MailjetTransportFactory)->create($dsn),
+            'mailpace' => (new MailPaceTransportFactory)->create($dsn),
+            'postmark' => (new PostmarkTransportFactory)->create($dsn),
+            'sendgrid' => (new SendgridTransportFactory)->create($dsn),
+            'sendinblue' => (new SendinblueTransportFactory)->create($dsn),
+            'infobip' => (new InfobipTransportFactory)->create($dsn),
+            default => (new EsmtpTransportFactory)->create($dsn),
+            
+        };
+
+        $this->mailer = new Mailer($transport);
     }
 
     /**

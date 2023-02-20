@@ -2,25 +2,11 @@
 
 return [
     /*
-     * Required, SMTP Server, Eg. 'smtp.mailgun.org'
+     * Required, Mailer dsn, Eg. 'smtp://user:pass@smtp.example.com:25'
+     * 
+     * @see https://symfony.com/doc/current/mailer.html#transport-setup
      */
-    'server' => env('SERVER'),
-
-    /*
-     * Required, SMTP Port, Eg. 25
-     * Use 465 for tls
-     */
-    'port' => env('PORT', 25),
-
-    /*
-     * Required, SMTP Username
-     */
-    'username' => env('USERNAME'),
-
-    /*
-     * Required, SMTP Password
-     */
-    'password' => env('PASSWORD'),
+    'dsn' => env('DSN'),
 
     /*
      * Send email to address (can be set in form post data also)
