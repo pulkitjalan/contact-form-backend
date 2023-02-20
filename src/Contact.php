@@ -11,6 +11,7 @@ use Symfony\Component\Mime\Part\File;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mailer\Transport\Dsn;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
+use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\Bridge\Amazon\Transport\SesTransportFactory;
 use Symfony\Component\Mailer\Bridge\Infobip\Transport\InfobipTransportFactory;
@@ -18,8 +19,8 @@ use Symfony\Component\Mailer\Bridge\Mailgun\Transport\MailgunTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailjet\Transport\MailjetTransportFactory;
 use Symfony\Component\Mailer\Bridge\MailPace\Transport\MailPaceTransportFactory;
 use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkTransportFactory;
-use Symfony\Component\Mailer\Bridge\Mailchimp\Transport\MandrillTransportFactory;
 use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridTransportFactory;
+use Symfony\Component\Mailer\Bridge\Mailchimp\Transport\MandrillTransportFactory;
 use Symfony\Component\Mailer\Bridge\Sendinblue\Transport\SendinblueTransportFactory;
 
 class Contact
