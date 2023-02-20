@@ -125,28 +125,28 @@ class Contact
      */
     public function mailer(): Mailer
     {
-        if ($this->mailer !== null) {
-            return $this->mailer;
+        if (! $this->mailer) {
+            $dsn = Dsn::fromString($this->config('dsn'));
+
+            $transport = match(Arr::first(explode('+', $dsn->getScheme(), 1))) {
+                'ses' => (new SesTransportFactory)->create($dsn),
+                // 'gmail' => 
+                'mandrill' => (new MandrillTransportFactory)->create($dsn),
+                'mailgun' => (new MailgunTransportFactory)->create($dsn),
+                'mailjet' => (new MailjetTransportFactory)->create($dsn),
+                'mailpace' => (new MailPaceTransportFactory)->create($dsn),
+                'postmark' => (new PostmarkTransportFactory)->create($dsn),
+                'sendgrid' => (new SendgridTransportFactory)->create($dsn),
+                'sendinblue' => (new SendinblueTransportFactory)->create($dsn),
+                'infobip' => (new InfobipTransportFactory)->create($dsn),
+                default => (new EsmtpTransportFactory)->create($dsn),
+                
+            };
+
+            $this->mailer = new Mailer($transport);
         }
 
-        $dsn = Dsn::fromString($this->config('dsn'));
-
-        $transport = match(Arr::first(explode('+', $dsn->getScheme(), 1))) {
-            'ses' => (new SesTransportFactory)->create($dsn),
-            // 'gmail' => 
-            'mandrill' => (new MandrillTransportFactory)->create($dsn),
-            'mailgun' => (new MailgunTransportFactory)->create($dsn),
-            'mailjet' => (new MailjetTransportFactory)->create($dsn),
-            'mailpace' => (new MailPaceTransportFactory)->create($dsn),
-            'postmark' => (new PostmarkTransportFactory)->create($dsn),
-            'sendgrid' => (new SendgridTransportFactory)->create($dsn),
-            'sendinblue' => (new SendinblueTransportFactory)->create($dsn),
-            'infobip' => (new InfobipTransportFactory)->create($dsn),
-            default => (new EsmtpTransportFactory)->create($dsn),
-            
-        };
-
-        $this->mailer = new Mailer($transport);
+        return $this->mailer;
     }
 
     /**
