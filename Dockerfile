@@ -21,12 +21,13 @@ RUN apk update \
       curl
 
 # Configure nginx
-COPY config/nginx.conf /etc/nginx/nginx.conf
-COPY config/default.conf /etc/nginx/conf.d/default.conf
+COPY config/default.conf /etc/nginx/http.d/default.conf
 
-# Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php81/php-fpm.d/www.conf
-COPY config/php.ini /etc/php81/conf.d/custom.ini
+# Configure PHP & PHP-FPM
+RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
+  && sed -i 's/expose_php = On/expose_php = Off/g' /usr/local/etc/php/php.ini
+COPY config/php.ini /usr/local/etc/php/conf.d/custom.ini
+COPY config/fpm-pool.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

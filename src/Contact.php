@@ -129,7 +129,7 @@ class Contact
 
             $transport = match(Arr::first(explode('+', $dsn->getScheme()))) {
                 'ses' => (new SesTransportFactory)->create($dsn),
-                // 'gmail' => 
+                // 'gmail' =>
                 'mandrill' => (new MandrillTransportFactory)->create($dsn),
                 'mailgun' => (new MailgunTransportFactory)->create($dsn),
                 'mailjet' => (new MailjetTransportFactory)->create($dsn),
