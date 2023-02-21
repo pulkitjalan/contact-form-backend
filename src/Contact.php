@@ -128,7 +128,7 @@ class Contact
         if (! $this->mailer) {
             $dsn = Dsn::fromString($this->config('dsn'));
 
-            $transport = match(Arr::first(explode('+', $dsn->getScheme(), 1))) {
+            $transport = match(Arr::first(explode('+', $dsn->getScheme()))) {
                 'ses' => (new SesTransportFactory)->create($dsn),
                 // 'gmail' => 
                 'mandrill' => (new MandrillTransportFactory)->create($dsn),
@@ -140,7 +140,6 @@ class Contact
                 'sendinblue' => (new SendinblueTransportFactory)->create($dsn),
                 'infobip' => (new InfobipTransportFactory)->create($dsn),
                 default => (new EsmtpTransportFactory)->create($dsn),
-                
             };
 
             $this->mailer = new Mailer($transport);
