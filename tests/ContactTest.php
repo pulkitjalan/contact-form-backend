@@ -65,6 +65,7 @@ class ContactTest extends TestCase
             ->html('<html> <head></head> <body> <p><b>Message</b>: Foo</p> </body> </html>')
             ->text('Message: Foo'."\n");
 
+        /** @var PHPUnit\Framework\MockObject\MockObject $mailer */
         $mailer->expects($this->once())
             ->method('send')
             ->with($message);
@@ -99,6 +100,7 @@ class ContactTest extends TestCase
                 )
             );
 
+        /** @var PHPUnit\Framework\MockObject\MockObject $mailer */
         $mailer->expects($this->once())
             ->method('send')
             ->with($message);
