@@ -11,11 +11,9 @@ use Symfony\Component\Mime\Part\File;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mailer\Transport\Dsn;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mailer\Transport\TransportFactoryInterface;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
 use Symfony\Component\Mailer\Bridge\Amazon\Transport\SesTransportFactory;
-use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkSmtpTransport;
 use Symfony\Component\Mailer\Bridge\Infobip\Transport\InfobipTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailgun\Transport\MailgunTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailjet\Transport\MailjetTransportFactory;
@@ -205,35 +203,35 @@ class ContactTest extends TestCase
         // Sendgrid
         yield 'Sendgrid SMTP' => [
             'sendgrid+smtp://KEY@default',
-            new SendgridTransportFactory()
+            new SendgridTransportFactory(),
         ];
 
         yield 'Sendgrid API' => [
             'sendgrid+api://KEY@default',
-            new SendgridTransportFactory()
+            new SendgridTransportFactory(),
         ];
 
         // Sendinblue
         yield 'Sendinblue SMTP' => [
             'sendinblue+smtp://USERNAME:PASSWORD@default',
-            new SendinblueTransportFactory()
+            new SendinblueTransportFactory(),
         ];
 
         yield 'Sendinblue API' => [
             'sendinblue+api://KEY@default',
-            new SendinblueTransportFactory()
+            new SendinblueTransportFactory(),
         ];
 
         // Infobip
         yield 'Infobip SMTP' => [
             'infobip+smtp://KEY@default',
-            new InfobipTransportFactory()
+            new InfobipTransportFactory(),
         ];
 
         // Esmtp
         yield 'Esmtp' => [
             'foo+smtp://KEY@default',
-            new EsmtpTransportFactory()
+            new EsmtpTransportFactory(),
         ];
     }
 }
