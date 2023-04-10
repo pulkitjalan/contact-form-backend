@@ -10,6 +10,8 @@ use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Part\File;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mailer\Transport\Dsn;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\Bridge\Amazon\Transport\SesTransportFactory;
@@ -27,7 +29,7 @@ class Contact
     /**
      * Constructor.
      */
-    public function __construct(protected array $config, protected ?Mailer $mailer = null)
+    public function __construct(protected array $config, protected ?MailerInterface $mailer = null)
     {
         //
     }
@@ -122,29 +124,35 @@ class Contact
     /**
      * Getter for mailer.
      */
-    public function mailer(): Mailer
+    public function mailer(): MailerInterface
     {
         if (! $this->mailer) {
-            $dsn = Dsn::fromString($this->config('dsn'));
-
-            $transport = match(Arr::first(explode('+', $dsn->getScheme()))) {
-                'ses' => (new SesTransportFactory)->create($dsn),
-                // 'gmail' =>
-                'mandrill' => (new MandrillTransportFactory)->create($dsn),
-                'mailgun' => (new MailgunTransportFactory)->create($dsn),
-                'mailjet' => (new MailjetTransportFactory)->create($dsn),
-                'mailpace' => (new MailPaceTransportFactory)->create($dsn),
-                'postmark' => (new PostmarkTransportFactory)->create($dsn),
-                'sendgrid' => (new SendgridTransportFactory)->create($dsn),
-                'sendinblue' => (new SendinblueTransportFactory)->create($dsn),
-                'infobip' => (new InfobipTransportFactory)->create($dsn),
-                default => (new EsmtpTransportFactory)->create($dsn),
-            };
-
-            $this->mailer = new Mailer($transport);
+            $this->mailer = new Mailer($this->transport());
         }
 
         return $this->mailer;
+    }
+
+    /**
+     * Getter for transport.
+     */
+    public function transport(): TransportInterface
+    {
+        $dsn = Dsn::fromString($this->config('dsn'));
+
+        return match(Arr::first(explode('+', $dsn->getScheme()))) {
+            'ses' => (new SesTransportFactory)->create($dsn),
+            // 'gmail' =>
+            'mandrill' => (new MandrillTransportFactory)->create($dsn),
+            'mailgun' => (new MailgunTransportFactory)->create($dsn),
+            'mailjet' => (new MailjetTransportFactory)->create($dsn),
+            'mailpace' => (new MailPaceTransportFactory)->create($dsn),
+            'postmark' => (new PostmarkTransportFactory)->create($dsn),
+            'sendgrid' => (new SendgridTransportFactory)->create($dsn),
+            'sendinblue' => (new SendinblueTransportFactory)->create($dsn),
+            'infobip' => (new InfobipTransportFactory)->create($dsn),
+            default => (new EsmtpTransportFactory)->create($dsn),
+        };
     }
 
     /**
