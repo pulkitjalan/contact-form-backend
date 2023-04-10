@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 // create a request instance
 $input = Request::createFromGlobals();
 
+$config = file_exists(__DIR__.'/../config.php')
+    ? require __DIR__.'/../config.php'
+    : require __DIR__.'/../config.php.example';
+
 // create contact instance
-$contact = new \PulkitJalan\ContactForm\Contact();
+$contact = new \PulkitJalan\ContactForm\Contact($config);
 
 // set header to allow all origins
 header('Access-Control-Allow-Origin: *');
@@ -29,24 +33,24 @@ if (! $input->isMethod('post')) {
 
 $data = $input->all();
 
-$required = $contact->getConfig('required');
+$required = $contact->config('required');
 
 if (! is_array($required)) {
     $required = array_map('trim', explode(',', $required));
 }
 
-if ($contact->getConfig('recaptcha.secret') !== null) {
+if ($contact->config('recaptcha.secret') !== null) {
     $required[] = 'g-recaptcha-response';
 }
 
 foreach ($required as $validate) {
     if (! in_array($validate, array_keys($data)) || empty(Arr::get($data, $validate))) {
-        http_response_code(400);
-        echo 'Failed';
-
         // Check if user has set a redirect
-        if ($failure = $contact->getConfig('redirect.failure', Arr::get($data, 'redirect.failure'))) {
-            header('Location: '.$failure);
+        if ($failure = $contact->config('redirect.failure', Arr::get($data, 'redirect.failure'))) {
+            header('Location: '.$failure, true, 302);
+        } else {
+            http_response_code(400);
+            echo 'Failed';
         }
 
         exit;
@@ -54,7 +58,7 @@ foreach ($required as $validate) {
 }
 
 // Verify captcha
-if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->getConfig('recaptcha.secret')) {
+if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->config('recaptcha.secret')) {
     $post_data = http_build_query(
         [
             'secret' => $secret,
@@ -76,12 +80,12 @@ if (Arr::get($data, 'g-recaptcha-response') && $secret = $contact->getConfig('re
     $result = json_decode($response);
 
     if (! $result->success) {
-        http_response_code(400);
-        echo 'Failed';
-
         // Check if user has set a redirect
-        if ($failure = $contact->getConfig('redirect.failure', Arr::get($data, 'redirect.failure'))) {
-            header('Location: '.$failure);
+        if ($failure = $contact->config('redirect.failure', Arr::get($data, 'redirect.failure'))) {
+            header('Location: '.$failure, true, 302);
+        } else {
+            http_response_code(400);
+            echo 'Failed';
         }
 
         exit;
@@ -94,7 +98,7 @@ $files = Arr::get($data, 'files', []);
 
 $data['files'] = array_filter(
     array_map(function ($file) {
-        // if the file is invalid dont process it
+        // if the file is invalid don't process it
         if (empty($file) || ! $file->isValid()) {
             return;
         }
@@ -117,18 +121,19 @@ try {
 
 // try sending
 if ($success) {
-    echo 'Successful';
-
     // Check if user has set a redirect
-    if ($success = $contact->getConfig('redirect.success', Arr::get($data, 'redirect.success'))) {
-        header('Location: '.$success);
+    if ($success = $contact->config('redirect.success', Arr::get($data, 'redirect.success'))) {
+        header('Location: '.$success, true, 302);
+    } else {
+        http_response_code(200);
+        echo 'Successful';
     }
 } else {
-    http_response_code(400);
-    echo 'Failed';
-
     // Check if user has set a redirect
-    if ($failure = $contact->getConfig('redirect.failure', Arr::get($data, 'redirect.failure'))) {
-        header('Location: '.$failure);
+    if ($failure = $contact->config('redirect.failure', Arr::get($data, 'redirect.failure'))) {
+        header('Location: '.$failure, true, 302);
+    } else {
+        http_response_code(400);
+        echo 'Failed';
     }
 }

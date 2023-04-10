@@ -3,15 +3,30 @@
     "description": "Simple contact form backend",
 
     "require": {
-        "swiftmailer/swiftmailer": "^5.4",
-        "illuminate/support": "^5.8",
-        "illuminate/http": "^5.8",
-        "vlucas/phpdotenv": "^3.6"
+        "illuminate/support": "^10.0",
+        "illuminate/http": "^10.0",
+        "vlucas/phpdotenv": "^5.0",
+        "symfony/mailer": "^6.2",
+        "symfony/amazon-mailer": "^6.2",
+        "symfony/mailchimp-mailer": "^6.2",
+        "symfony/mailgun-mailer": "^6.2",
+        "symfony/mailjet-mailer": "^6.2",
+        "symfony/postmark-mailer": "^6.2",
+        "symfony/sendgrid-mailer": "^6.2",
+        "symfony/sendinblue-mailer": "^6.2",
+        "symfony/mail-pace-mailer": "^6.2",
+        "symfony/infobip-mailer": "^6.2"
     },
 
     "autoload": {
         "psr-4": {
             "PulkitJalan\\ContactForm\\": "src"
+        }
+    },
+
+    "config": {
+        "platform": {
+            "php": "8.1"
         }
     }
 }
