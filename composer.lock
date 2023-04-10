@@ -3244,21 +3244,22 @@
         },
         {
             "name": "symfony/postmark-mailer",
-            "version": "v6.2.5",
+            "version": "v6.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/postmark-mailer.git",
-                "reference": "b6630e287f94fbc1f0f0a20a3a147a69ac8f862b"
+                "reference": "c486fb0a4d503c7af58e2aee516aeee43d91e7fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/postmark-mailer/zipball/b6630e287f94fbc1f0f0a20a3a147a69ac8f862b",
-                "reference": "b6630e287f94fbc1f0f0a20a3a147a69ac8f862b",
+                "url": "https://api.github.com/repos/symfony/postmark-mailer/zipball/c486fb0a4d503c7af58e2aee516aeee43d91e7fc",
+                "reference": "c486fb0a4d503c7af58e2aee516aeee43d91e7fc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "symfony/mailer": "^5.4|^6.0"
+                "psr/event-dispatcher": "^1",
+                "symfony/mailer": "^5.4.21|^6.2.7"
             },
             "require-dev": {
                 "symfony/http-client": "^5.4|^6.0"
@@ -3289,7 +3290,7 @@
             "description": "Symfony Postmark Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/postmark-mailer/tree/v6.2.5"
+                "source": "https://github.com/symfony/postmark-mailer/tree/v6.2.7"
             },
             "funding": [
                 {
@@ -3305,7 +3306,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-01T08:36:55+00:00"
+            "time": "2023-02-21T10:35:38+00:00"
         },
         {
             "name": "symfony/sendgrid-mailer",
