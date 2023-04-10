@@ -3309,21 +3309,21 @@
         },
         {
             "name": "symfony/sendgrid-mailer",
-            "version": "v6.2.5",
+            "version": "v6.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/sendgrid-mailer.git",
-                "reference": "30160cc64fc2e0c9b6885698af72430accd46900"
+                "reference": "724b1dba5774eb5b3cece597dc05682bf3d13300"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/30160cc64fc2e0c9b6885698af72430accd46900",
-                "reference": "30160cc64fc2e0c9b6885698af72430accd46900",
+                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/724b1dba5774eb5b3cece597dc05682bf3d13300",
+                "reference": "724b1dba5774eb5b3cece597dc05682bf3d13300",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "symfony/mailer": "^5.4|^6.0"
+                "symfony/mailer": "^5.4.21|^6.2.7"
             },
             "conflict": {
                 "symfony/mime": "<6.2"
@@ -3357,7 +3357,7 @@
             "description": "Symfony Sendgrid Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/sendgrid-mailer/tree/v6.2.5"
+                "source": "https://github.com/symfony/sendgrid-mailer/tree/v6.2.7"
             },
             "funding": [
                 {
@@ -3373,7 +3373,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-01T08:38:09+00:00"
+            "time": "2023-02-21T10:35:38+00:00"
         },
         {
             "name": "symfony/sendinblue-mailer",
