@@ -70,4 +70,4 @@ jobs:
           tags: ghcr.io/${{ github.repository }}:test
 
       - name: Test
-        run: docker run -it --rm ghcr.io/${{ github.repository }}:test php -v
+        run: docker run --rm ghcr.io/${{ github.repository }}:test
