@@ -81,7 +81,7 @@ jobs:
       - name: Test container
         uses: BerniWittmann/background-server-action@v1
         with:
-          build: composer install && vendor/bin/phpunit
+          command: composer install && vendor/bin/phpunit
           start: |
             docker run --rm \
               -p 8080:8080 \

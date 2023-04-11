@@ -24,6 +24,12 @@ class IndexTest extends TestCase
         } catch (HttpClientException|RequestException) {
             $this->markTestSkipped('Mailhog is not running.');
         }
+
+        try {
+            $this->http->get('http://localhost:8080/');
+        } catch (HttpClientException|RequestException) {
+            $this->markTestSkipped('Contact form is not running.');
+        }
     }
 
     /**
