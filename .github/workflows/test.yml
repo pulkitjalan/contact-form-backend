@@ -82,5 +82,5 @@ jobs:
         uses: BerniWittmann/background-server-action@v1
         with:
           command: composer install && vendor/bin/phpunit
-          start: docker run --rm -p 8080:8080 --network mailhog -e DSN=mailhog+smtp://mailhog:1025 -e FROM_EMAIL=foo@bar.com -e TO_EMAIL=bar@baz.com ghcr.io/${{ github.repository }}:test
+          start: docker run --rm -p 8080:8080 --network ${{ job.container.network }} -e DSN=mailhog+smtp://mailhog:1025 -e FROM_EMAIL=foo@bar.com -e TO_EMAIL=bar@baz.com ghcr.io/${{ github.repository }}:test
           wait-on: 'http://localhost:8080'
