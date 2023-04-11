@@ -1,8 +1,3 @@
-FROM composer:2 as composer
-COPY . /app
-WORKDIR /app
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-
 FROM php:8.1-fpm-alpine
 
 # Install packages
@@ -19,6 +14,9 @@ RUN apk update \
       nginx \
       supervisor \
       curl
+
+# Copy composer
+COPY --from=composer/composer:2-bin /composer /usr/bin/composer
 
 # Configure nginx
 COPY config/default.conf /etc/nginx/http.d/default.conf
@@ -55,7 +53,10 @@ USER nobody
 # Add application
 WORKDIR /var/www/html
 COPY --chown=nobody . /var/www/html/
-COPY --from=composer --chown=nobody /app/vendor /var/www/html/vendor
+
+# Install dependencies
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader \
+  && chown -R nobody:nobody /var/www/html/vendor
 
 # Expose nginx port
 EXPOSE 8080

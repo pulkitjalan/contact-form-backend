@@ -18,13 +18,25 @@
         "symfony/infobip-mailer": "^6.2"
     },
 
+    "require-dev": {
+        "guzzlehttp/guzzle": "^7.5",
+        "phpunit/phpunit": "^9.5"
+    },
+
     "autoload": {
         "psr-4": {
             "PulkitJalan\\ContactForm\\": "src"
         }
     },
 
+    "autoload-dev": {
+        "psr-4": {
+            "PulkitJalan\\ContactForm\\Tests\\": "tests"
+        }
+    },
+
     "config": {
+        "sort-packages": true,
         "platform": {
             "php": "8.1"
         }

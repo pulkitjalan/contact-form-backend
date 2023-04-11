@@ -36,8 +36,10 @@ $data = $input->all();
 $required = $contact->config('required');
 
 if (! is_array($required)) {
-    $required = array_map('trim', explode(',', $required));
+    $required = array_map('trim', explode(',', $required ?? ''));
 }
+
+$required = array_filter($required);
 
 if ($contact->config('recaptcha.secret') !== null) {
     $required[] = 'g-recaptcha-response';

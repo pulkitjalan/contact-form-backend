@@ -1,4 +1,6 @@
 .DS_Store
 config.php
-/vendor
+vendor
 .vscode/
+.phpunit.result.cache
+.php-cs-fixer.cache

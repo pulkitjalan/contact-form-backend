@@ -1,0 +1,48 @@
+name: "tests"
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docker:
+
+    runs-on: ubuntu-latest
+    name: docker
+
+    services:
+      mailhog:
+        image: mailhog/mailhog
+        ports:
+          - 1025:1025
+          - 8025:8025
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          file: Dockerfile
+          load: true
+          tags: ghcr.io/${{ github.repository }}:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Test container
+        uses: BerniWittmann/background-server-action@v1
+        with:
+          command: composer install && vendor/bin/phpunit
+          start: docker run --rm -p 8080:8080 --network ${{ job.container.network }} -e MAILHOG_HOST=mailhog -e DSN=mailhog+smtp://mailhog:1025 -e FROM_EMAIL=foo@bar.com -e TO_EMAIL=bar@baz.com ghcr.io/${{ github.repository }}:test
+          wait-on: 'http://localhost:8080'
