@@ -5,48 +5,55 @@ on:
     branches: [ main ]
 
 jobs:
-  unit:
+  # unit:
 
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [8.1, 8.2]
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: true
+  #     matrix:
+  #       php: [8.1, 8.2]
 
-    name: unit - PHP${{ matrix.php }}
+  #   name: unit - PHP${{ matrix.php }}
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.composer/cache/files
-          key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+  #     - name: Cache dependencies
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ~/.composer/cache/files
+  #         key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: json, openssl, curl, zlib, session, mbstring, fileinfo, gd
-          # coverage: xdebug
+  #     - name: Setup PHP
+  #       uses: shivammathur/setup-php@v2
+  #       with:
+  #         php-version: ${{ matrix.php }}
+  #         extensions: json, openssl, curl, zlib, session, mbstring, fileinfo, gd
+  #         # coverage: xdebug
 
-      - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist --no-suggest
+  #     - name: Install dependencies
+  #       run: composer install --no-interaction --prefer-dist --no-suggest
 
-      - name: Execute tests
-        run: vendor/bin/phpunit tests
+  #     - name: Execute tests
+  #       run: vendor/bin/phpunit tests
 
-      # - uses: codecov/codecov-action@v3
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     directory: build
+  #     # - uses: codecov/codecov-action@v3
+  #     #   with:
+  #     #     token: ${{ secrets.CODECOV_TOKEN }}
+  #     #     directory: build
 
   docker:
 
     runs-on: ubuntu-latest
     name: docker
+
+    services:
+      mailhog:
+        image: mailhog/mailhog
+        ports:
+          - 1025:1025
+          - 8025:8025
 
     steps:
       - name: Checkout code
@@ -68,6 +75,18 @@ jobs:
           file: Dockerfile
           load: true
           tags: ghcr.io/${{ github.repository }}:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      - name: Test
-        run: docker run --rm ghcr.io/${{ github.repository }}:test
+      - name: Test container
+        uses: BerniWittmann/background-server-action@v1
+        with:
+          build: composer install && vendor/bin/phpunit
+          start: |
+            docker run --rm \
+              -p 8080:8080 \
+              -e DSN=mailhog+smtp://localhost:1025 \
+              -e FROM_EMAIL=foo@bar.com \
+              -e TO_EMAIL=bar@baz.com \
+              ghcr.io/${{ github.repository }}:test
+          wait-on: 'http://localhost:8080'

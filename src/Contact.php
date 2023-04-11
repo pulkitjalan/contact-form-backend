@@ -31,7 +31,7 @@ class Contact
      */
     public function __construct(protected array $config, protected ?MailerInterface $mailer = null)
     {
-        //
+        $this->config = $this->array_filter_recursive($this->config);
     }
 
     /**
@@ -67,8 +67,8 @@ class Contact
         // build email instance
         $message = (new Email())
             ->subject($subject)
-            ->from(new Address(Arr::get($from, 'email'), Arr::get($from, 'name')))
-            ->to(new Address(Arr::get($to, 'email'), Arr::get($to, 'name')));
+            ->from(new Address(Arr::get($from, 'email'), Arr::get($from, 'name', '')))
+            ->to(new Address(Arr::get($to, 'email'), Arr::get($to, 'name', '')));
 
         // add attachments if exist
         $files = Arr::get($data, 'files', []);
@@ -140,18 +140,18 @@ class Contact
     {
         $dsn = Dsn::fromString($this->config('dsn'));
 
-        return match(Arr::first(explode('+', $dsn->getScheme()))) {
-            'ses' => (new SesTransportFactory)->create($dsn),
+        return match (Arr::first(explode('+', $dsn->getScheme()))) {
+            'ses' => (new SesTransportFactory())->create($dsn),
             // 'gmail' =>
-            'mandrill' => (new MandrillTransportFactory)->create($dsn),
-            'mailgun' => (new MailgunTransportFactory)->create($dsn),
-            'mailjet' => (new MailjetTransportFactory)->create($dsn),
-            'mailpace' => (new MailPaceTransportFactory)->create($dsn),
-            'postmark' => (new PostmarkTransportFactory)->create($dsn),
-            'sendgrid' => (new SendgridTransportFactory)->create($dsn),
-            'sendinblue' => (new SendinblueTransportFactory)->create($dsn),
-            'infobip' => (new InfobipTransportFactory)->create($dsn),
-            default => (new EsmtpTransportFactory)->create($dsn),
+            'mandrill' => (new MandrillTransportFactory())->create($dsn),
+            'mailgun' => (new MailgunTransportFactory())->create($dsn),
+            'mailjet' => (new MailjetTransportFactory())->create($dsn),
+            'mailpace' => (new MailPaceTransportFactory())->create($dsn),
+            'postmark' => (new PostmarkTransportFactory())->create($dsn),
+            'sendgrid' => (new SendgridTransportFactory())->create($dsn),
+            'sendinblue' => (new SendinblueTransportFactory())->create($dsn),
+            'infobip' => (new InfobipTransportFactory())->create($dsn),
+            default => (new EsmtpTransportFactory())->create($dsn),
         };
     }
 
@@ -165,5 +165,16 @@ class Contact
         }
 
         return Arr::get($this->config, $key, $default);
+    }
+
+    protected function array_filter_recursive($input)
+    {
+        foreach ($input as &$value) {
+            if (is_array($value)) {
+                $value = $this->array_filter_recursive($value);
+            }
+        }
+
+        return array_filter($input);
     }
 }

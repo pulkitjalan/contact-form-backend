@@ -19,6 +19,7 @@
     },
 
     "require-dev": {
+        "guzzlehttp/guzzle": "^7.5",
         "phpunit/phpunit": "^9.5"
     },
 
