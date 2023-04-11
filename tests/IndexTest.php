@@ -20,7 +20,7 @@ class IndexTest extends TestCase
         $this->http = new Factory();
 
         try {
-            $this->http->get('http://localhost:8025/');
+            $this->http->get('http://'.env('MAILHOG_HOST', 'localhost').':8025/');
         } catch (HttpClientException|RequestException) {
             $this->markTestSkipped('Mailhog is not running.');
         }
@@ -50,7 +50,7 @@ class IndexTest extends TestCase
     protected function getLatestEmail()
     {
         $email = $this->http
-            ->get('http://localhost:8025/api/v2/messages?limit=1')
+            ->get('http://'.env('MAILHOG_HOST', 'localhost').':8025/api/v2/messages?limit=1')
             ->json('items.0');
 
         $text = '';
