@@ -1,8 +1,5 @@
 name: dependabot-auto-merge
-on:
-  pull_request:
-  pull_request_review:
-    types: [submitted]
+on: pull_request
 
 permissions:
   pull-requests: write
