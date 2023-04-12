@@ -733,7 +733,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v10.6.2",
+            "version": "v10.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -797,7 +797,7 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v10.6.2",
+            "version": "v10.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
@@ -903,7 +903,7 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v10.6.2",
+            "version": "v10.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
