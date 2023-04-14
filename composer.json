@@ -20,7 +20,7 @@
 
     "require-dev": {
         "guzzlehttp/guzzle": "^7.5",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^10.1"
     },
 
     "autoload": {
