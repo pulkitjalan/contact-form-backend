@@ -1,16 +1,16 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 # Install packages
 RUN apk update \
     && apk --no-cache add \
-      php81-json \
-      php81-openssl \
-      php81-curl \
-      php81-zlib \
-      php81-session \
-      php81-mbstring \
-      php81-fileinfo \
-      php81-gd \
+      php82-json \
+      php82-openssl \
+      php82-curl \
+      php82-zlib \
+      php82-session \
+      php82-mbstring \
+      php82-fileinfo \
+      php82-gd \
       nginx \
       supervisor \
       curl
