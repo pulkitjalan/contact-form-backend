@@ -3455,7 +3455,7 @@
         },
         {
             "name": "symfony/sendinblue-mailer",
-            "version": "v6.2.10",
+            "version": "v6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/sendinblue-mailer.git",
@@ -3503,7 +3503,7 @@
             "description": "Symfony Sendinblue Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/sendinblue-mailer/tree/v6.2.10"
+                "source": "https://github.com/symfony/sendinblue-mailer/tree/v6.3.0"
             },
             "funding": [
                 {
