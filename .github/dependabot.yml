@@ -11,8 +11,6 @@ updates:
       - "dependencies"
       - "github-actions"
     open-pull-requests-limit: 10
-    reviewers:
-      - "pulkitjalan"
 
   - package-ecosystem: "composer"
     directory: "/"
@@ -24,5 +22,3 @@ updates:
       - "dependencies"
       - "composer"
     open-pull-requests-limit: 10
-    reviewers:
-      - "pulkitjalan"
