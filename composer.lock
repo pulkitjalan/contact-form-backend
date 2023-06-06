@@ -733,7 +733,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v10.13.1",
+            "version": "v10.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -797,16 +797,16 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v10.13.1",
+            "version": "v10.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "e08bf43e2ca73d06d0082a4e993878f8a4620ae4"
+                "reference": "7ac8e023d702756746da960234821ab7c0f270de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/e08bf43e2ca73d06d0082a4e993878f8a4620ae4",
-                "reference": "e08bf43e2ca73d06d0082a4e993878f8a4620ae4",
+                "url": "https://api.github.com/repos/illuminate/http/zipball/7ac8e023d702756746da960234821ab7c0f270de",
+                "reference": "7ac8e023d702756746da960234821ab7c0f270de",
                 "shasum": ""
             },
             "require": {
@@ -853,7 +853,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-05-15T14:58:02+00:00"
+            "time": "2023-06-03T03:02:22+00:00"
         },
         {
             "name": "illuminate/macroable",
@@ -903,7 +903,7 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v10.13.1",
+            "version": "v10.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
