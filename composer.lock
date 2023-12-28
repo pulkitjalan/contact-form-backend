@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d512fca5e3d93b6a3c207c447e17bb7",
+    "content-hash": "19543d20cd881003e5707f4fada60de0",
     "packages": [
         {
             "name": "async-aws/core",
@@ -2366,28 +2366,28 @@
         },
         {
             "name": "symfony/infobip-mailer",
-            "version": "v6.3.0",
+            "version": "v7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/infobip-mailer.git",
-                "reference": "c321040828c0fdfddb7645e3950011dcf7394b56"
+                "reference": "92437d3569c92c04162792e9673197d71d246c06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/infobip-mailer/zipball/c321040828c0fdfddb7645e3950011dcf7394b56",
-                "reference": "c321040828c0fdfddb7645e3950011dcf7394b56",
+                "url": "https://api.github.com/repos/symfony/infobip-mailer/zipball/92437d3569c92c04162792e9673197d71d246c06",
+                "reference": "92437d3569c92c04162792e9673197d71d246c06",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "symfony/mailer": "^6.2.7",
-                "symfony/mime": "^5.4.13|~6.0.13|^6.1.5"
+                "php": ">=8.2",
+                "symfony/mailer": "^6.4|^7.0",
+                "symfony/mime": "^6.4|^7.0"
             },
             "conflict": {
-                "symfony/mime": "<6.2"
+                "symfony/mime": "<6.4"
             },
             "require-dev": {
-                "symfony/http-client": "^6.1"
+                "symfony/http-client": "^6.4|^7.0"
             },
             "type": "symfony-mailer-bridge",
             "autoload": {
@@ -2419,7 +2419,7 @@
             "description": "Symfony Infobip Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/infobip-mailer/tree/v6.3.0"
+                "source": "https://github.com/symfony/infobip-mailer/tree/v7.0.0"
             },
             "funding": [
                 {
@@ -2435,7 +2435,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-04T15:05:09+00:00"
+            "time": "2023-07-09T07:43:58+00:00"
         },
         {
             "name": "symfony/mail-pace-mailer",
