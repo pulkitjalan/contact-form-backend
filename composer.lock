@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d512fca5e3d93b6a3c207c447e17bb7",
+    "content-hash": "3354411eba3def41977449361e692228",
     "packages": [
         {
             "name": "async-aws/core",
@@ -2439,25 +2439,25 @@
         },
         {
             "name": "symfony/mail-pace-mailer",
-            "version": "v6.3.1",
+            "version": "v7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mail-pace-mailer.git",
-                "reference": "e7fd19c7f99af2df66b40cce7bd5997ee5867c81"
+                "reference": "b59d4770b17948af31ad7dc3712d615d9e39f867"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mail-pace-mailer/zipball/e7fd19c7f99af2df66b40cce7bd5997ee5867c81",
-                "reference": "e7fd19c7f99af2df66b40cce7bd5997ee5867c81",
+                "url": "https://api.github.com/repos/symfony/mail-pace-mailer/zipball/b59d4770b17948af31ad7dc3712d615d9e39f867",
+                "reference": "b59d4770b17948af31ad7dc3712d615d9e39f867",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
+                "php": ">=8.2",
                 "psr/event-dispatcher": "^1",
-                "symfony/mailer": "^5.4.21|^6.2.7"
+                "symfony/mailer": "^6.4|^7.0"
             },
             "require-dev": {
-                "symfony/http-client": "^5.4|^6.0"
+                "symfony/http-client": "^6.4|^7.0"
             },
             "type": "symfony-mailer-bridge",
             "autoload": {
@@ -2489,7 +2489,7 @@
             "description": "Symfony MailPace Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mail-pace-mailer/tree/v6.3.1"
+                "source": "https://github.com/symfony/mail-pace-mailer/tree/v7.0.0"
             },
             "funding": [
                 {
@@ -2505,7 +2505,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-06-01T08:30:39+00:00"
+            "time": "2023-10-17T13:48:31+00:00"
         },
         {
             "name": "symfony/mailchimp-mailer",
