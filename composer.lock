@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d512fca5e3d93b6a3c207c447e17bb7",
+    "content-hash": "a068b25c5e7d730f91feeb3ee0e64cbd",
     "packages": [
         {
             "name": "async-aws/core",
@@ -2723,24 +2723,25 @@
         },
         {
             "name": "symfony/mailjet-mailer",
-            "version": "v6.3.0",
+            "version": "v7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailjet-mailer.git",
-                "reference": "63c1f8e4fd40e61b1be0dd2a0f56b68e69aff8e9"
+                "reference": "3a62eadbd5a521e698d1dfbdeab2491068011720"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailjet-mailer/zipball/63c1f8e4fd40e61b1be0dd2a0f56b68e69aff8e9",
-                "reference": "63c1f8e4fd40e61b1be0dd2a0f56b68e69aff8e9",
+                "url": "https://api.github.com/repos/symfony/mailjet-mailer/zipball/3a62eadbd5a521e698d1dfbdeab2491068011720",
+                "reference": "3a62eadbd5a521e698d1dfbdeab2491068011720",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "symfony/mailer": "^5.4.21|^6.2.7"
+                "php": ">=8.2",
+                "symfony/mailer": "^6.4|^7.0"
             },
             "require-dev": {
-                "symfony/http-client": "^5.4|^6.0"
+                "symfony/http-client": "^6.4|^7.0",
+                "symfony/webhook": "^6.4|^7.0"
             },
             "type": "symfony-mailer-bridge",
             "autoload": {
@@ -2768,7 +2769,7 @@
             "description": "Symfony Mailjet Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailjet-mailer/tree/v6.3.0"
+                "source": "https://github.com/symfony/mailjet-mailer/tree/v7.0.2"
             },
             "funding": [
                 {
@@ -2784,7 +2785,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-28T15:57:00+00:00"
+            "time": "2023-12-19T11:23:03+00:00"
         },
         {
             "name": "symfony/mime",
