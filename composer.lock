@@ -3587,16 +3587,16 @@
         },
         {
             "name": "symfony/sendinblue-mailer",
-            "version": "v6.4.0",
+            "version": "v6.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/sendinblue-mailer.git",
-                "reference": "14e07b1a57c25600fcdec3dcbab449f6d93dc5a3"
+                "reference": "ec9629c66e78628ef18fc56a8fbe657b21b538bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/sendinblue-mailer/zipball/14e07b1a57c25600fcdec3dcbab449f6d93dc5a3",
-                "reference": "14e07b1a57c25600fcdec3dcbab449f6d93dc5a3",
+                "url": "https://api.github.com/repos/symfony/sendinblue-mailer/zipball/ec9629c66e78628ef18fc56a8fbe657b21b538bb",
+                "reference": "ec9629c66e78628ef18fc56a8fbe657b21b538bb",
                 "shasum": ""
             },
             "require": {
@@ -3636,7 +3636,7 @@
             "description": "Symfony Sendinblue Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/sendinblue-mailer/tree/v6.4.0"
+                "source": "https://github.com/symfony/sendinblue-mailer/tree/v6.4.3"
             },
             "funding": [
                 {
@@ -3652,7 +3652,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-25T15:47:42+00:00"
+            "time": "2024-01-23T14:51:35+00:00"
         },
         {
             "name": "symfony/service-contracts",
