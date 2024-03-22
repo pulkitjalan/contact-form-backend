@@ -8,7 +8,7 @@
         "vlucas/phpdotenv": "^5.0",
         "symfony/mailer": "^6.2",
         "symfony/amazon-mailer": "^6.2",
-        "symfony/mailchimp-mailer": "^6.2",
+        "symfony/mailchimp-mailer": "^7.0",
         "symfony/mailgun-mailer": "^6.2",
         "symfony/mailjet-mailer": "^6.2",
         "symfony/postmark-mailer": "^6.2",
