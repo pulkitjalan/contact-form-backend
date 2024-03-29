@@ -14,7 +14,7 @@
         "symfony/postmark-mailer": "^6.2",
         "symfony/sendgrid-mailer": "^6.2",
         "symfony/sendinblue-mailer": "^6.2",
-        "symfony/mail-pace-mailer": "^6.2",
+        "symfony/mail-pace-mailer": "^7.0",
         "symfony/infobip-mailer": "^7.0"
     },
 
