@@ -2,7 +2,6 @@
 
 namespace PulkitJalan\ContactForm\Tests;
 
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
@@ -13,6 +12,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mailer\Transport\Dsn;
 use Symfony\Component\Mailer\MailerInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Mailer\Transport\TransportFactoryInterface;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
 use Symfony\Component\Mailer\Bridge\Amazon\Transport\SesTransportFactory;
