@@ -37,8 +37,6 @@ jobs:
           file: Dockerfile
           load: true
           tags: ghcr.io/${{ github.repository }}:test
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
 
       - name: Test container
         uses: BerniWittmann/background-server-action@v1
