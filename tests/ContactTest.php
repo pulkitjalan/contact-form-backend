@@ -119,7 +119,7 @@ class ContactTest extends TestCase
         ]);
     }
 
-    public function fromDsn()
+    public static function fromDsn()
     {
         // Amazon SES
         yield 'Amazon SES SMTP' => [
