@@ -7,7 +7,7 @@
         "illuminate/http": "^10.0",
         "vlucas/phpdotenv": "^5.0",
         "symfony/mailer": "^6.2",
-        "symfony/amazon-mailer": "^6.2",
+        "symfony/amazon-mailer": "^7.0",
         "symfony/mailchimp-mailer": "^7.0",
         "symfony/mailgun-mailer": "^6.2",
         "symfony/mailjet-mailer": "^6.2",
