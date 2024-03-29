@@ -41,7 +41,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/${{ github.repository }}
+            ${{ github.repository }}
           tags: |
             type=raw,value=test
 
@@ -49,15 +49,18 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           file: Dockerfile
-          push: true
-          provenance: false
-          platforms: linux/amd64,linux/arm64
+          load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
 
       - name: Test container
         uses: BerniWittmann/background-server-action@v1
         with:
           command: composer install && vendor/bin/phpunit
-          start: docker run --rm -p 8080:8080 --network ${{ job.container.network }} -e MAILHOG_HOST=mailhog -e DSN=mailhog+smtp://mailhog:1025 -e FROM_EMAIL=foo@bar.com -e TO_EMAIL=bar@baz.com ${{ steps.meta.outputs.tags }}
+          start: docker run --rm -p 8080:8080 --network ${{ job.container.network }} -e MAILHOG_HOST=mailhog -e DSN=mailhog+smtp://mailhog:1025 -e FROM_EMAIL=foo@bar.com -e TO_EMAIL=bar@baz.com ghcr.io/${{ github.repository }}:test
           wait-on: 'http://localhost:8080'
