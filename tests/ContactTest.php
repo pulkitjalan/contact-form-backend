@@ -2,12 +2,14 @@
 
 namespace PulkitJalan\ContactForm\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
 use PulkitJalan\ContactForm\Contact;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Part\File;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mailer\Transport\Dsn;
 use Symfony\Component\Mailer\MailerInterface;
@@ -25,10 +27,8 @@ use Symfony\Component\Mailer\Bridge\Sendinblue\Transport\SendinblueTransportFact
 
 class ContactTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider fromDsn
-     */
+    #[Test]
+    #[DataProvider('fromDsn')]
     public function it_should_return_a_valid_transport(string $dsn, TransportFactoryInterface $transportFactory)
     {
         $contact = new Contact(['dsn' => $dsn]);
@@ -36,10 +36,8 @@ class ContactTest extends TestCase
         $this->assertEquals($transportFactory->create(Dsn::fromString($dsn)), $contact->transport());
     }
 
-    /**
-     * @test
-     * @dataProvider fromDsn
-     */
+    #[Test]
+    #[DataProvider('fromDsn')]
     public function it_should_return_a_valid_mailer(string $dsn, TransportFactoryInterface $transportFactory)
     {
         $contact = new Contact(['dsn' => $dsn]);
@@ -49,9 +47,7 @@ class ContactTest extends TestCase
         $this->assertEquals(new Mailer($transport), $contact->mailer());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_send_a_message()
     {
         $mailer = $this->createMock(MailerInterface::class);
@@ -78,9 +74,7 @@ class ContactTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_send_a_message_with_files()
     {
         $mailer = $this->createMock(MailerInterface::class);
@@ -119,7 +113,7 @@ class ContactTest extends TestCase
         ]);
     }
 
-    public function fromDsn()
+    public static function fromDsn()
     {
         // Amazon SES
         yield 'Amazon SES SMTP' => [

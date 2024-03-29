@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Http\Client\Factory;
+use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\HttpClientException;
 
@@ -32,9 +33,7 @@ class IndexTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_send_an_email()
     {
         $this->http->post('http://localhost:8080/', [
