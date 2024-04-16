@@ -11,7 +11,7 @@
         "symfony/mailchimp-mailer": "^7.0",
         "symfony/mailgun-mailer": "^7.0",
         "symfony/mailjet-mailer": "^7.0",
-        "symfony/postmark-mailer": "^6.2",
+        "symfony/postmark-mailer": "^7.0",
         "symfony/sendgrid-mailer": "^7.0",
         "symfony/sendinblue-mailer": "^6.2",
         "symfony/mail-pace-mailer": "^7.0",
