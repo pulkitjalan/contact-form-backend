@@ -23,7 +23,6 @@ use Symfony\Component\Mailer\Bridge\MailPace\Transport\MailPaceTransportFactory;
 use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkTransportFactory;
 use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailchimp\Transport\MandrillTransportFactory;
-use Symfony\Component\Mailer\Bridge\Sendinblue\Transport\SendinblueTransportFactory;
 
 class ContactTest extends TestCase
 {
@@ -205,17 +204,6 @@ class ContactTest extends TestCase
         yield 'Sendgrid API' => [
             'sendgrid+api://KEY@default',
             new SendgridTransportFactory(),
-        ];
-
-        // Sendinblue
-        yield 'Sendinblue SMTP' => [
-            'sendinblue+smtp://USERNAME:PASSWORD@default',
-            new SendinblueTransportFactory(),
-        ];
-
-        yield 'Sendinblue API' => [
-            'sendinblue+api://KEY@default',
-            new SendinblueTransportFactory(),
         ];
 
         // Infobip

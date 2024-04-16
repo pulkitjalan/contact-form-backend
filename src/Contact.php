@@ -22,7 +22,6 @@ use Symfony\Component\Mailer\Bridge\MailPace\Transport\MailPaceTransportFactory;
 use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkTransportFactory;
 use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailchimp\Transport\MandrillTransportFactory;
-use Symfony\Component\Mailer\Bridge\Sendinblue\Transport\SendinblueTransportFactory;
 
 class Contact
 {
@@ -149,7 +148,6 @@ class Contact
             'mailpace' => (new MailPaceTransportFactory())->create($dsn),
             'postmark' => (new PostmarkTransportFactory())->create($dsn),
             'sendgrid' => (new SendgridTransportFactory())->create($dsn),
-            'sendinblue' => (new SendinblueTransportFactory())->create($dsn),
             'infobip' => (new InfobipTransportFactory())->create($dsn),
             default => (new EsmtpTransportFactory())->create($dsn),
         };
