@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f65130dfe09cec40f9c9d48a4f3c34a",
+    "content-hash": "9362f3cd4e860b59d0009ad358644bdf",
     "packages": [
         {
             "name": "async-aws/core",
@@ -3509,29 +3509,29 @@
         },
         {
             "name": "symfony/sendgrid-mailer",
-            "version": "v6.4.3",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/sendgrid-mailer.git",
-                "reference": "910a1c8f8a44111b69de1e2539a2243a91eaf9be"
+                "reference": "24717c029524840c64aaa1ddc97185ae3cab1688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/910a1c8f8a44111b69de1e2539a2243a91eaf9be",
-                "reference": "910a1c8f8a44111b69de1e2539a2243a91eaf9be",
+                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/24717c029524840c64aaa1ddc97185ae3cab1688",
+                "reference": "24717c029524840c64aaa1ddc97185ae3cab1688",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "symfony/mailer": "^5.4.21|^6.2.7|^7.0"
+                "php": ">=8.2",
+                "symfony/mailer": "^6.4|^7.0"
             },
             "conflict": {
-                "symfony/http-foundation": "<6.2",
-                "symfony/mime": "<6.2"
+                "symfony/http-foundation": "<6.4",
+                "symfony/mime": "<6.4"
             },
             "require-dev": {
-                "symfony/http-client": "^5.4|^6.0|^7.0",
-                "symfony/webhook": "^6.3|^7.0"
+                "symfony/http-client": "^6.4|^7.0",
+                "symfony/webhook": "^6.4|^7.0"
             },
             "type": "symfony-mailer-bridge",
             "autoload": {
@@ -3559,7 +3559,7 @@
             "description": "Symfony Sendgrid Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/sendgrid-mailer/tree/v6.4.3"
+                "source": "https://github.com/symfony/sendgrid-mailer/tree/v7.0.3"
             },
             "funding": [
                 {
@@ -3575,7 +3575,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:51:35+00:00"
+            "time": "2024-01-23T15:02:46+00:00"
         },
         {
             "name": "symfony/sendinblue-mailer",
