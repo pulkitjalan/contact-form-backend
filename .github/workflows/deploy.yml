@@ -44,7 +44,6 @@ jobs:
           images: |
             pulkitjalan/contact-form
             ghcr.io/pulkitjalan/contact-form
-            ghcr.io/${{ github.repository }}
           tags: |
             type=raw,value=latest
 
