@@ -15,14 +15,16 @@ use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\Bridge\Amazon\Transport\SesTransportFactory;
+use Symfony\Component\Mailer\Bridge\Brevo\Transport\BrevoTransportFactory;
 use Symfony\Component\Mailer\Bridge\Infobip\Transport\InfobipTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailgun\Transport\MailgunTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailjet\Transport\MailjetTransportFactory;
 use Symfony\Component\Mailer\Bridge\MailPace\Transport\MailPaceTransportFactory;
 use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkTransportFactory;
+use Symfony\Component\Mailer\Bridge\Scaleway\Transport\ScalewayTransportFactory;
 use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailchimp\Transport\MandrillTransportFactory;
-use Symfony\Component\Mailer\Bridge\Sendinblue\Transport\SendinblueTransportFactory;
+use Symfony\Component\Mailer\Bridge\MailerSend\Transport\MailerSendTransportFactory;
 
 class Contact
 {
@@ -142,15 +144,16 @@ class Contact
 
         return match (Arr::first(explode('+', $dsn->getScheme()))) {
             'ses' => (new SesTransportFactory())->create($dsn),
-            // 'gmail' =>
-            'mandrill' => (new MandrillTransportFactory())->create($dsn),
+            'brevo' => (new BrevoTransportFactory())->create($dsn),
+            'infobip' => (new InfobipTransportFactory())->create($dsn),
             'mailgun' => (new MailgunTransportFactory())->create($dsn),
             'mailjet' => (new MailjetTransportFactory())->create($dsn),
             'mailpace' => (new MailPaceTransportFactory())->create($dsn),
+            'mailersend' => (new MailerSendTransportFactory())->create($dsn),
+            'mandrill' => (new MandrillTransportFactory())->create($dsn),
             'postmark' => (new PostmarkTransportFactory())->create($dsn),
+            'scaleway' => (new ScalewayTransportFactory())->create($dsn),
             'sendgrid' => (new SendgridTransportFactory())->create($dsn),
-            'sendinblue' => (new SendinblueTransportFactory())->create($dsn),
-            'infobip' => (new InfobipTransportFactory())->create($dsn),
             default => (new EsmtpTransportFactory())->create($dsn),
         };
     }

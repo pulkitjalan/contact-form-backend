@@ -3,23 +3,25 @@
     "description": "Simple contact form backend",
 
     "require": {
-        "illuminate/support": "^10.0",
-        "illuminate/http": "^10.0",
-        "vlucas/phpdotenv": "^5.0",
-        "symfony/mailer": "^7.0",
+        "illuminate/http": "^11.0",
+        "illuminate/support": "^11.0",
         "symfony/amazon-mailer": "^7.0",
+        "symfony/brevo-mailer": "^7.0",
+        "symfony/infobip-mailer": "^7.0",
+        "symfony/mail-pace-mailer": "^7.0",
         "symfony/mailchimp-mailer": "^7.0",
+        "symfony/mailer": "^7.0",
+        "symfony/mailer-send-mailer": "^7.0",
         "symfony/mailgun-mailer": "^7.0",
         "symfony/mailjet-mailer": "^7.0",
         "symfony/postmark-mailer": "^7.0",
+        "symfony/scaleway-mailer": "^7.0",
         "symfony/sendgrid-mailer": "^7.0",
-        "symfony/sendinblue-mailer": "^6.2",
-        "symfony/mail-pace-mailer": "^7.0",
-        "symfony/infobip-mailer": "^7.0"
+        "vlucas/phpdotenv": "^5.0"
     },
 
     "require-dev": {
-        "guzzlehttp/guzzle": "^7.5",
+        "guzzlehttp/guzzle": "^7.8",
         "phpunit/phpunit": "^11.0"
     },
 

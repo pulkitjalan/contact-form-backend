@@ -5,20 +5,20 @@ namespace PulkitJalan\ContactForm\Tests;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\TestCase;
-use Illuminate\Http\Client\Factory;
 use PHPUnit\Framework\Attributes\Test;
+use Illuminate\Http\Client\Factory as Http;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\HttpClientException;
 
 class IndexTest extends TestCase
 {
-    protected Factory $http;
+    protected Http $http;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->http = new Factory();
+        $this->http = new Http();
 
         try {
             $this->http->get('http://'.env('MAILHOG_HOST', 'localhost').':8025/');
