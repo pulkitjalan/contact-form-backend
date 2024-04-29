@@ -16,13 +16,16 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Mailer\Transport\TransportFactoryInterface;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
 use Symfony\Component\Mailer\Bridge\Amazon\Transport\SesTransportFactory;
+use Symfony\Component\Mailer\Bridge\Brevo\Transport\BrevoTransportFactory;
 use Symfony\Component\Mailer\Bridge\Infobip\Transport\InfobipTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailgun\Transport\MailgunTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailjet\Transport\MailjetTransportFactory;
 use Symfony\Component\Mailer\Bridge\MailPace\Transport\MailPaceTransportFactory;
 use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkTransportFactory;
+use Symfony\Component\Mailer\Bridge\Scaleway\Transport\ScalewayTransportFactory;
 use Symfony\Component\Mailer\Bridge\Sendgrid\Transport\SendgridTransportFactory;
 use Symfony\Component\Mailer\Bridge\Mailchimp\Transport\MandrillTransportFactory;
+use Symfony\Component\Mailer\Bridge\MailerSend\Transport\MailerSendTransportFactory;
 
 class ContactTest extends TestCase
 {
@@ -114,7 +117,7 @@ class ContactTest extends TestCase
 
     public static function fromDsn()
     {
-        // Amazon SES
+        // ------------------ Amazon SES ------------------
         yield 'Amazon SES SMTP' => [
             'ses+smtp://USERNAME:PASSWORD@default',
             new SesTransportFactory(),
@@ -130,23 +133,24 @@ class ContactTest extends TestCase
             new SesTransportFactory(),
         ];
 
-        // Mailchimp
-        yield 'Mailchimp Mandrill SMTP' => [
-            'mandrill+smtp://USERNAME:PASSWORD@default',
-            new MandrillTransportFactory(),
+        // ------------------ Brevo ------------------
+        yield 'Brevo SMTP' => [
+            'brevo+smtp://USERNAME:PASSWORD@default',
+            new BrevoTransportFactory(),
         ];
 
-        yield 'Mailchimp Mandrill HTTP' => [
-            'mandrill+https://KEY@default',
-            new MandrillTransportFactory(),
+        yield 'Brevo API' => [
+            'brevo+api://KEY@default',
+            new BrevoTransportFactory(),
         ];
 
-        yield 'Mailchimp Mandrill API' => [
-            'mandrill+api://KEY@default',
-            new MandrillTransportFactory(),
+        // ------------------ Infobip ------------------
+        yield 'Infobip SMTP' => [
+            'infobip+smtp://KEY@default',
+            new InfobipTransportFactory(),
         ];
 
-        // Mailgun
+        // ------------------ Mailgun ------------------
         yield 'Mailgun SMTP' => [
             'mailgun+smtp://USERNAME:PASSWORD@default',
             new MailgunTransportFactory(),
@@ -157,12 +161,7 @@ class ContactTest extends TestCase
             new MailgunTransportFactory(),
         ];
 
-        yield 'Mailgun API' => [
-            'mailgun+api://KEY:DOMAIN@default',
-            new MailgunTransportFactory(),
-        ];
-
-        // Mailjet
+        // ------------------ Mailjet ------------------
         yield 'Mailjet SMTP' => [
             'mailjet+smtp://ACCESS_KEY:SECRET_KEY@default',
             new MailjetTransportFactory(),
@@ -173,7 +172,7 @@ class ContactTest extends TestCase
             new MailjetTransportFactory(),
         ];
 
-        // MailPace
+        // ------------------ MailPace ------------------
         yield 'MailPace SMTP' => [
             'mailpace+api://API_TOKEN@default',
             new MailPaceTransportFactory(),
@@ -184,7 +183,39 @@ class ContactTest extends TestCase
             new MailPaceTransportFactory(),
         ];
 
-        // Postmark
+        yield 'Mailgun API' => [
+            'mailgun+api://KEY:DOMAIN@default',
+            new MailgunTransportFactory(),
+        ];
+
+        // ------------------ MailerSend ------------------
+        yield 'MailerSend SMTP' => [
+            'mailersend+smtp://MAILERSEND_SMTP_USERNAME:MAILERSEND_SMTP_PASSWORD@default',
+            new MailerSendTransportFactory(),
+        ];
+
+        yield 'MailerSend API' => [
+            'mailersend+api://MAILERSEND_API_KEY@default',
+            new MailerSendTransportFactory(),
+        ];
+
+        // ------------------ Mandrill (Mailchimp) ------------------
+        yield 'Mandrill SMTP (Mailchimp)' => [
+            'mandrill+smtp://USERNAME:PASSWORD@default',
+            new MandrillTransportFactory(),
+        ];
+
+        yield 'Mandrill HTTP (Mailchimp)' => [
+            'mandrill+https://KEY@default',
+            new MandrillTransportFactory(),
+        ];
+
+        yield 'Mandrill API (Mailchimp)' => [
+            'mandrill+api://KEY@default',
+            new MandrillTransportFactory(),
+        ];
+
+        // ------------------ Postmark ------------------
         yield 'Postmark SMTP' => [
             'postmark+smtp://ID@default',
             new PostmarkTransportFactory(),
@@ -195,7 +226,18 @@ class ContactTest extends TestCase
             new PostmarkTransportFactory(),
         ];
 
-        // Sendgrid
+        // ------------------ Scaleway ------------------
+        yield 'Scaleway SMTP' => [
+            'scaleway+smtp://PROJECT_ID:API_KEY@default',
+            new ScalewayTransportFactory(),
+        ];
+
+        yield 'Scaleway API' => [
+            'scaleway+api://PROJECT_ID:API_KEY@default',
+            new ScalewayTransportFactory(),
+        ];
+
+        // ------------------ Sendgrid ------------------
         yield 'Sendgrid SMTP' => [
             'sendgrid+smtp://KEY@default',
             new SendgridTransportFactory(),
@@ -206,13 +248,7 @@ class ContactTest extends TestCase
             new SendgridTransportFactory(),
         ];
 
-        // Infobip
-        yield 'Infobip SMTP' => [
-            'infobip+smtp://KEY@default',
-            new InfobipTransportFactory(),
-        ];
-
-        // Esmtp
+        // ------------------ Esmtp ------------------
         yield 'Esmtp' => [
             'foo+smtp://KEY@default',
             new EsmtpTransportFactory(),
