@@ -4181,16 +4181,16 @@
         },
         {
             "name": "symfony/postmark-mailer",
-            "version": "v7.0.4",
+            "version": "v7.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/postmark-mailer.git",
-                "reference": "04129b7e4e4e6b1eac7e0ea5513e302fa77a5e45"
+                "reference": "c99bb20bf7434ff506f2b22bc7d3c6e7b5ffa5f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/postmark-mailer/zipball/04129b7e4e4e6b1eac7e0ea5513e302fa77a5e45",
-                "reference": "04129b7e4e4e6b1eac7e0ea5513e302fa77a5e45",
+                "url": "https://api.github.com/repos/symfony/postmark-mailer/zipball/c99bb20bf7434ff506f2b22bc7d3c6e7b5ffa5f8",
+                "reference": "c99bb20bf7434ff506f2b22bc7d3c6e7b5ffa5f8",
                 "shasum": ""
             },
             "require": {
@@ -4231,7 +4231,7 @@
             "description": "Symfony Postmark Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/postmark-mailer/tree/v7.0.4"
+                "source": "https://github.com/symfony/postmark-mailer/tree/v7.0.7"
             },
             "funding": [
                 {
@@ -4247,7 +4247,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-12T11:15:03+00:00"
+            "time": "2024-04-18T09:29:19+00:00"
         },
         {
             "name": "symfony/scaleway-mailer",
