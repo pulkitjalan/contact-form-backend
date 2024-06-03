@@ -3479,16 +3479,16 @@
         },
         {
             "name": "symfony/mailjet-mailer",
-            "version": "v7.0.7",
+            "version": "v7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailjet-mailer.git",
-                "reference": "0d804cf94ed46351706c94029407fa1b1598fd35"
+                "reference": "7350b427a195c301b95ee084e8ee8668ff7f19c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailjet-mailer/zipball/0d804cf94ed46351706c94029407fa1b1598fd35",
-                "reference": "0d804cf94ed46351706c94029407fa1b1598fd35",
+                "url": "https://api.github.com/repos/symfony/mailjet-mailer/zipball/7350b427a195c301b95ee084e8ee8668ff7f19c3",
+                "reference": "7350b427a195c301b95ee084e8ee8668ff7f19c3",
                 "shasum": ""
             },
             "require": {
@@ -3525,7 +3525,7 @@
             "description": "Symfony Mailjet Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailjet-mailer/tree/v7.0.7"
+                "source": "https://github.com/symfony/mailjet-mailer/tree/v7.1.0"
             },
             "funding": [
                 {
@@ -3541,7 +3541,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/mime",
