@@ -3342,16 +3342,16 @@
         },
         {
             "name": "symfony/mailer-send-mailer",
-            "version": "v7.1.0",
+            "version": "v7.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer-send-mailer.git",
-                "reference": "44a5fef750d4eaac9bb1d0503a81191182a8fe77"
+                "reference": "11d3b104ae9d7416cb3e55bf522057fb779f278c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer-send-mailer/zipball/44a5fef750d4eaac9bb1d0503a81191182a8fe77",
-                "reference": "44a5fef750d4eaac9bb1d0503a81191182a8fe77",
+                "url": "https://api.github.com/repos/symfony/mailer-send-mailer/zipball/11d3b104ae9d7416cb3e55bf522057fb779f278c",
+                "reference": "11d3b104ae9d7416cb3e55bf522057fb779f278c",
                 "shasum": ""
             },
             "require": {
@@ -3392,7 +3392,7 @@
             "description": "Symfony MailerSend Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailer-send-mailer/tree/v7.1.0"
+                "source": "https://github.com/symfony/mailer-send-mailer/tree/v7.1.1"
             },
             "funding": [
                 {
@@ -3408,7 +3408,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-24T10:43:13+00:00"
+            "time": "2024-05-31T14:57:53+00:00"
         },
         {
             "name": "symfony/mailgun-mailer",
