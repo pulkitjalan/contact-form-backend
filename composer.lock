@@ -3127,16 +3127,16 @@
         },
         {
             "name": "symfony/mail-pace-mailer",
-            "version": "v7.1.0",
+            "version": "v7.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mail-pace-mailer.git",
-                "reference": "cc3c4943ea3e27740c2fb376856b72435e0decf7"
+                "reference": "7ead24b1b8e13709897b481e2113cc6c45fe1c7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mail-pace-mailer/zipball/cc3c4943ea3e27740c2fb376856b72435e0decf7",
-                "reference": "cc3c4943ea3e27740c2fb376856b72435e0decf7",
+                "url": "https://api.github.com/repos/symfony/mail-pace-mailer/zipball/7ead24b1b8e13709897b481e2113cc6c45fe1c7b",
+                "reference": "7ead24b1b8e13709897b481e2113cc6c45fe1c7b",
                 "shasum": ""
             },
             "require": {
@@ -3177,7 +3177,7 @@
             "description": "Symfony MailPace Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mail-pace-mailer/tree/v7.1.0"
+                "source": "https://github.com/symfony/mail-pace-mailer/tree/v7.1.1"
             },
             "funding": [
                 {
@@ -3193,7 +3193,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "time": "2024-05-31T14:57:53+00:00"
         },
         {
             "name": "symfony/mailchimp-mailer",
