@@ -4255,16 +4255,16 @@
         },
         {
             "name": "symfony/scaleway-mailer",
-            "version": "v7.1.0",
+            "version": "v7.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/scaleway-mailer.git",
-                "reference": "1b81907c9656a2e4f34a40a1a5f809803f7c2702"
+                "reference": "e516544076392ceb41986b3cb6dbf5c65596dadc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/scaleway-mailer/zipball/1b81907c9656a2e4f34a40a1a5f809803f7c2702",
-                "reference": "1b81907c9656a2e4f34a40a1a5f809803f7c2702",
+                "url": "https://api.github.com/repos/symfony/scaleway-mailer/zipball/e516544076392ceb41986b3cb6dbf5c65596dadc",
+                "reference": "e516544076392ceb41986b3cb6dbf5c65596dadc",
                 "shasum": ""
             },
             "require": {
@@ -4300,7 +4300,7 @@
             "description": "Symfony Scaleway Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/scaleway-mailer/tree/v7.1.0"
+                "source": "https://github.com/symfony/scaleway-mailer/tree/v7.1.1"
             },
             "funding": [
                 {
@@ -4316,7 +4316,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "time": "2024-05-31T14:57:53+00:00"
         },
         {
             "name": "symfony/sendgrid-mailer",
