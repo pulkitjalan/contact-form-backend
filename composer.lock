@@ -3197,16 +3197,16 @@
         },
         {
             "name": "symfony/mailchimp-mailer",
-            "version": "v7.1.0",
+            "version": "v7.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailchimp-mailer.git",
-                "reference": "01027d32f5ecad276cea0a9f3440048594738591"
+                "reference": "6d10c3a24f04740d97594f43c309c81439a80f71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailchimp-mailer/zipball/01027d32f5ecad276cea0a9f3440048594738591",
-                "reference": "01027d32f5ecad276cea0a9f3440048594738591",
+                "url": "https://api.github.com/repos/symfony/mailchimp-mailer/zipball/6d10c3a24f04740d97594f43c309c81439a80f71",
+                "reference": "6d10c3a24f04740d97594f43c309c81439a80f71",
                 "shasum": ""
             },
             "require": {
@@ -3242,7 +3242,7 @@
             "description": "Symfony Mailchimp Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailchimp-mailer/tree/v7.1.0"
+                "source": "https://github.com/symfony/mailchimp-mailer/tree/v7.1.1"
             },
             "funding": [
                 {
@@ -3258,7 +3258,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "time": "2024-05-31T14:57:53+00:00"
         },
         {
             "name": "symfony/mailer",
