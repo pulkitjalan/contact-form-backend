@@ -4321,16 +4321,16 @@
         },
         {
             "name": "symfony/sendgrid-mailer",
-            "version": "v7.1.0",
+            "version": "v7.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/sendgrid-mailer.git",
-                "reference": "deb1ceaed6b1f59b98a7e567d068c1290c2076b3"
+                "reference": "abe5989dcb57e762d3e39b96ff564d2196a40160"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/deb1ceaed6b1f59b98a7e567d068c1290c2076b3",
-                "reference": "deb1ceaed6b1f59b98a7e567d068c1290c2076b3",
+                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/abe5989dcb57e762d3e39b96ff564d2196a40160",
+                "reference": "abe5989dcb57e762d3e39b96ff564d2196a40160",
                 "shasum": ""
             },
             "require": {
@@ -4371,7 +4371,7 @@
             "description": "Symfony Sendgrid Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/sendgrid-mailer/tree/v7.1.0"
+                "source": "https://github.com/symfony/sendgrid-mailer/tree/v7.1.1"
             },
             "funding": [
                 {
@@ -4387,7 +4387,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-07T06:21:07+00:00"
+            "time": "2024-05-31T14:57:53+00:00"
         },
         {
             "name": "symfony/service-contracts",
