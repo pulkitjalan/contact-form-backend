@@ -696,16 +696,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "6ea8dd08867a2a42619d65c3deb2c0fcbf81c8f8"
+                "reference": "f9c436286ab2892c7db7be8c8da4ef61ccf7b455"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/6ea8dd08867a2a42619d65c3deb2c0fcbf81c8f8",
-                "reference": "6ea8dd08867a2a42619d65c3deb2c0fcbf81c8f8",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/f9c436286ab2892c7db7be8c8da4ef61ccf7b455",
+                "reference": "f9c436286ab2892c7db7be8c8da4ef61ccf7b455",
                 "shasum": ""
             },
             "require": {
@@ -759,7 +759,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
-                "source": "https://github.com/guzzle/promises/tree/2.0.3"
+                "source": "https://github.com/guzzle/promises/tree/2.0.4"
             },
             "funding": [
                 {
@@ -775,7 +775,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-18T10:29:17+00:00"
+            "time": "2024-10-17T10:06:22+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1130,7 +1130,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v11.28.1",
+            "version": "v11.29.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -1197,16 +1197,16 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v11.28.1",
+            "version": "v11.29.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "66e7882f1a8a571127ef008fc8f4e014de5cf1b5"
+                "reference": "c5910926cfec0896800e9d25cb7f61bccbed04b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/66e7882f1a8a571127ef008fc8f4e014de5cf1b5",
-                "reference": "66e7882f1a8a571127ef008fc8f4e014de5cf1b5",
+                "url": "https://api.github.com/repos/illuminate/http/zipball/c5910926cfec0896800e9d25cb7f61bccbed04b3",
+                "reference": "c5910926cfec0896800e9d25cb7f61bccbed04b3",
                 "shasum": ""
             },
             "require": {
@@ -1254,7 +1254,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-10-08T13:36:27+00:00"
+            "time": "2024-10-21T14:20:28+00:00"
         },
         {
             "name": "illuminate/macroable",
@@ -1304,7 +1304,7 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v11.28.1",
+            "version": "v11.29.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
