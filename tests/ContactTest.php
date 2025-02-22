@@ -117,6 +117,12 @@ class ContactTest extends TestCase
 
     public static function fromDsn()
     {
+        // ------------------ SMTP ------------------
+        yield 'Esmtp' => [
+            'smtp://user:pass@localhost:25',
+            new EsmtpTransportFactory(),
+        ];
+
         // ------------------ Amazon SES ------------------
         yield 'Amazon SES SMTP' => [
             'ses+smtp://USERNAME:PASSWORD@default',
@@ -246,12 +252,6 @@ class ContactTest extends TestCase
         yield 'Sendgrid API' => [
             'sendgrid+api://KEY@default',
             new SendgridTransportFactory(),
-        ];
-
-        // ------------------ Esmtp ------------------
-        yield 'Esmtp' => [
-            'foo+smtp://KEY@default',
-            new EsmtpTransportFactory(),
         ];
     }
 }

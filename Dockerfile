@@ -1,16 +1,16 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 # Install packages
 RUN apk update \
     && apk --no-cache add \
-      php82-json \
-      php82-openssl \
-      php82-curl \
-      php82-zlib \
-      php82-session \
-      php82-mbstring \
-      php82-fileinfo \
-      php82-gd \
+      php84-json \
+      php84-openssl \
+      php84-curl \
+      php84-zlib \
+      php84-session \
+      php84-mbstring \
+      php84-fileinfo \
+      php84-gd \
       nginx \
       supervisor \
       curl
@@ -31,9 +31,9 @@ COPY config/fpm-pool.conf /usr/local/etc/php-fpm.d/www.conf
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /run \
-  && chown -R nobody.nobody /var/lib/nginx \
-  && chown -R nobody.nobody /var/log/nginx \
+RUN chown -R nobody:nobody /run \
+  && chown -R nobody:nobody /var/lib/nginx \
+  && chown -R nobody:nobody /var/log/nginx \
   # Setup document root
   && mkdir -p /var/www/html \
   # Cleanup
