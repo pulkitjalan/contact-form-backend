@@ -3217,7 +3217,7 @@
         },
         {
             "name": "symfony/mailchimp-mailer",
-            "version": "v7.2.0",
+            "version": "v7.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailchimp-mailer.git",
@@ -3266,7 +3266,7 @@
             "description": "Symfony Mailchimp Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailchimp-mailer/tree/v7.2.0"
+                "source": "https://github.com/symfony/mailchimp-mailer/tree/v7.3.0"
             },
             "funding": [
                 {
