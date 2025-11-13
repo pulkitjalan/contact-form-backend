@@ -3509,21 +3509,21 @@
         },
         {
             "name": "symfony/mailjet-mailer",
-            "version": "v7.2.0",
+            "version": "v7.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailjet-mailer.git",
-                "reference": "1387c1fa5f10f0d9fd2ef9716b47f2cadd67519a"
+                "reference": "155f5d62910724846829cf5109038b148a18f130"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailjet-mailer/zipball/1387c1fa5f10f0d9fd2ef9716b47f2cadd67519a",
-                "reference": "1387c1fa5f10f0d9fd2ef9716b47f2cadd67519a",
+                "url": "https://api.github.com/repos/symfony/mailjet-mailer/zipball/155f5d62910724846829cf5109038b148a18f130",
+                "reference": "155f5d62910724846829cf5109038b148a18f130",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "symfony/mailer": "^7.2"
+                "symfony/mailer": "^7.3"
             },
             "require-dev": {
                 "symfony/http-client": "^6.4|^7.0",
@@ -3555,7 +3555,7 @@
             "description": "Symfony Mailjet Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailjet-mailer/tree/v7.2.0"
+                "source": "https://github.com/symfony/mailjet-mailer/tree/v7.3.5"
             },
             "funding": [
                 {
@@ -3567,11 +3567,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-18T09:50:33+00:00"
+            "time": "2025-09-30T06:01:42+00:00"
         },
         {
             "name": "symfony/mime",
