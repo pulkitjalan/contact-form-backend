@@ -4298,16 +4298,16 @@
         },
         {
             "name": "symfony/sendgrid-mailer",
-            "version": "v7.2.3",
+            "version": "v7.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/sendgrid-mailer.git",
-                "reference": "d05b8ac91a16c2857a05b5add417aa95ac4ac42f"
+                "reference": "2c22a2a421fa9e9b335036abe7a519d72b2e8d76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/d05b8ac91a16c2857a05b5add417aa95ac4ac42f",
-                "reference": "d05b8ac91a16c2857a05b5add417aa95ac4ac42f",
+                "url": "https://api.github.com/repos/symfony/sendgrid-mailer/zipball/2c22a2a421fa9e9b335036abe7a519d72b2e8d76",
+                "reference": "2c22a2a421fa9e9b335036abe7a519d72b2e8d76",
                 "shasum": ""
             },
             "require": {
@@ -4349,7 +4349,7 @@
             "description": "Symfony Sendgrid Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/sendgrid-mailer/tree/v7.2.3"
+                "source": "https://github.com/symfony/sendgrid-mailer/tree/v7.3.2"
             },
             "funding": [
                 {
@@ -4361,11 +4361,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-07T12:55:42+00:00"
+            "time": "2025-07-10T08:29:33+00:00"
         },
         {
             "name": "symfony/service-contracts",
