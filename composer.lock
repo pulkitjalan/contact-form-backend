@@ -3079,7 +3079,7 @@
         },
         {
             "name": "symfony/infobip-mailer",
-            "version": "v7.2.0",
+            "version": "v7.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/infobip-mailer.git",
@@ -3132,7 +3132,7 @@
             "description": "Symfony Infobip Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/infobip-mailer/tree/v7.2.0"
+                "source": "https://github.com/symfony/infobip-mailer/tree/v7.3.0"
             },
             "funding": [
                 {
