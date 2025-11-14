@@ -3152,7 +3152,7 @@
         },
         {
             "name": "symfony/mail-pace-mailer",
-            "version": "v7.2.0",
+            "version": "v7.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mail-pace-mailer.git",
@@ -3202,7 +3202,7 @@
             "description": "Symfony MailPace Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mail-pace-mailer/tree/v7.2.0"
+                "source": "https://github.com/symfony/mail-pace-mailer/tree/v7.3.0"
             },
             "funding": [
                 {
